@@ -13,7 +13,7 @@ function convertAToMenuRoute(menu: any): Api.Route.MenuRoute {
     component: menu.component,
     meta: {
       activeMenu: menu.activeMenu,
-      buttons: menu.button ? menu.button.map((b: { code: any; desc: any }) => ({ code: b.code, desc: b.desc })) : [],
+      buttons: menu.buttons,
       constant: menu.constant,
       fixedIndexInTab: menu.fixedIndexInTab,
       hideInMenu: menu.hideInMenu,
@@ -24,7 +24,7 @@ function convertAToMenuRoute(menu: any): Api.Route.MenuRoute {
       localIcon: menu.localIcon,
       multiTab: menu.multiTab,
       order: menu.order,
-      query: menu.query ? menu.query.map((q: { key: any; value: any }) => ({ key: q.key, value: q.value })) : [],
+      query: menu.query,
       title: menu.menuName
     },
     children: menu.children ? menu.children.map(convertAToMenuRoute) : []

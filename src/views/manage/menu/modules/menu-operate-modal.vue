@@ -293,6 +293,8 @@ watch(
           <NFormItemGi v-if="showPage" span="24 m:12" :label="$t('page.manage.menu.page')" path="page">
             <NSelect
               v-model:value="model.page"
+              filterable
+              tag
               :options="pageOptions"
               :placeholder="$t('page.manage.menu.form.page')"
             />

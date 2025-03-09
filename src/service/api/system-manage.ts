@@ -32,8 +32,8 @@ export function fetchGetUserList(params?: Api.SystemManage.UserSearchParams) {
 
 /** get menu list */
 export function fetchGetMenuList() {
-  return request<Api.SystemManage.MenuList>({
-    url: '/systemManage/getMenuList/v2',
+  return request<Api.SystemManage.Menu[]>({
+    url: '/systemManage/getMenuList',
     method: 'get'
   });
 }

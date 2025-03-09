@@ -1,9 +1,9 @@
 <script setup lang="tsx">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import type { Ref } from 'vue';
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
 import { useBoolean } from '@sa/hooks';
-import { fetchGetAllPages, fetchGetMenuList } from '@/service/api';
+import { fetchGetMenuList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
@@ -19,7 +19,19 @@ const { bool: visible, setTrue: openModal } = useBoolean();
 const wrapperRef = ref<HTMLElement | null>(null);
 
 const { columns, columnChecks, data, loading, pagination, getData, getDataByPage } = useTable({
-  apiFn: fetchGetMenuList,
+  apiFn: async () => {
+    // 由于没有不分页的封装，所以只能这样写
+    return {
+      data: {
+        records: (await fetchGetMenuList()).data!,
+        current: 1,
+        size: 10,
+        total: 10
+      },
+      error: null,
+      response: {} as any
+    };
+  },
   columns: () => [
     {
       type: 'selection',
@@ -172,6 +184,18 @@ const { columns, columnChecks, data, loading, pagination, getData, getDataByPage
 
 const { checkedRowKeys, onBatchDeleted, onDeleted } = useTableOperate(data, getData);
 
+const menuNameList = computed(() => {
+  const nameList: string[] = [];
+  function mapFunc(item: Api.SystemManage.Menu) {
+    nameList.push(item.routeName);
+    if (item.children) {
+      item.children.forEach(mapFunc);
+    }
+  }
+  data.value.forEach(mapFunc);
+  return nameList;
+});
+
 const operateType = ref<OperateType>('add');
 
 function handleAdd() {
@@ -210,20 +234,6 @@ function handleAddChildMenu(item: Api.SystemManage.Menu) {
 
   openModal();
 }
-
-const allPages = ref<string[]>([]);
-
-async function getAllPages() {
-  const { data: pages } = await fetchGetAllPages();
-  allPages.value = pages || [];
-}
-
-function init() {
-  getAllPages();
-}
-
-// init
-init();
 </script>
 
 <template>
@@ -256,7 +266,7 @@ init();
         v-model:visible="visible"
         :operate-type="operateType"
         :row-data="editingData"
-        :all-pages="allPages"
+        :all-pages="menuNameList"
         @submitted="getDataByPage"
       />
     </NCard>
