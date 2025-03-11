@@ -53,3 +53,12 @@ export function fetchGetMenuTree() {
     method: 'get'
   });
 }
+
+/** get role menu */
+export function fetchGetRoleMenu(params: { roleId: number }) {
+  return request<Api.SystemManage.Menu[]>({
+    url: '/systemManage/getRoleMenu',
+    method: 'get',
+    params
+  });
+}
