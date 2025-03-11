@@ -6,6 +6,7 @@ import { $t } from '@/locales';
 import { enableStatusOptions, menuIconTypeOptions, menuTypeOptions } from '@/constants/business';
 import SvgIcon from '@/components/custom/svg-icon.vue';
 import { getLocalIcons } from '@/utils/icon';
+import { fetchCreateMenu, fetchUpdateMenu } from '@/service/api';
 import {
   getLayoutAndPage,
   getPathParamFromRoutePath,
@@ -238,7 +239,11 @@ async function handleSubmit() {
   const params = getSubmitParams();
 
   console.log('params: ', params);
-
+  if (props.operateType === 'edit') {
+    await fetchUpdateMenu(params);
+  } else {
+    await fetchCreateMenu(params);
+  }
   // request
   window.$message?.success($t('common.updateSuccess'));
   closeDrawer();

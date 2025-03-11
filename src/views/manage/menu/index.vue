@@ -3,7 +3,7 @@ import { computed, ref } from 'vue';
 import type { Ref } from 'vue';
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
 import { useBoolean } from '@sa/hooks';
-import { fetchGetMenuList } from '@/service/api';
+import { fetchBatchDeleteMenu, fetchDeleteMenu, fetchGetMenuList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
@@ -206,14 +206,14 @@ function handleAdd() {
 async function handleBatchDelete() {
   // request
   console.log(checkedRowKeys.value);
-
+  await fetchBatchDeleteMenu(checkedRowKeys.value.map(i => Number.parseInt(i, 10)));
   onBatchDeleted();
 }
 
-function handleDelete(id: number) {
+async function handleDelete(id: number) {
   // request
   console.log(id);
-
+  await fetchDeleteMenu({ id });
   onDeleted();
 }
 

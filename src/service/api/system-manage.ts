@@ -79,3 +79,39 @@ export function fetchGetAllButton() {
     method: 'get'
   });
 }
+
+/** create menu */
+export function fetchCreateMenu(data: Partial<Api.SystemManage.Menu>) {
+  return request({
+    url: '/systemManage/createMenu',
+    method: 'post',
+    data
+  });
+}
+
+/** update menu */
+export function fetchUpdateMenu(data: Partial<Api.SystemManage.Menu>) {
+  return request({
+    url: '/systemManage/updateMenu',
+    method: 'put',
+    data
+  });
+}
+
+/** delete menu */
+export function fetchDeleteMenu(params: { id: number }) {
+  return request({
+    url: '/systemManage/deleteMenu',
+    method: 'delete',
+    params
+  });
+}
+
+/** batch delete menu */
+export function fetchBatchDeleteMenu(data: number[]) {
+  return request({
+    url: '/systemManage/batchDeleteMenu',
+    method: 'delete',
+    data
+  });
+}
