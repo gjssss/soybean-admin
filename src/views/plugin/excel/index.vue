@@ -1,10 +1,9 @@
 <script setup lang="tsx">
-import { NButton, NTag } from 'naive-ui';
+import { NButton } from 'naive-ui';
 import { utils, writeFile } from 'xlsx';
 import { useAppStore } from '@/store/modules/app';
 import { useTable } from '@/hooks/common/table';
 import { fetchGetUserList } from '@/service/api';
-import { enableStatusRecord, userGenderRecord } from '@/constants/business';
 import { $t } from '@/locales';
 
 const appStore = useAppStore();
@@ -17,12 +16,7 @@ const { columns, data, loading } = useTable({
     size: 999,
     // if you want to use the searchParams in Form, you need to define the following properties, and the value is null
     // the value can not be undefined, otherwise the property in Form will not be reactive
-    status: null,
-    userName: null,
-    userGender: null,
-    nickName: null,
-    userPhone: null,
-    userEmail: null
+    userName: null
   },
   columns: () => [
     {
@@ -41,64 +35,6 @@ const { columns, data, loading } = useTable({
       title: $t('page.manage.user.userName'),
       align: 'center',
       minWidth: 100
-    },
-    {
-      key: 'userGender',
-      title: $t('page.manage.user.userGender'),
-      align: 'center',
-      width: 100,
-      render: row => {
-        if (row.userGender === null) {
-          return null;
-        }
-
-        const tagMap: Record<Api.SystemManage.UserGender, NaiveUI.ThemeColor> = {
-          1: 'primary',
-          2: 'error'
-        };
-
-        const label = $t(userGenderRecord[row.userGender]);
-
-        return <NTag type={tagMap[row.userGender]}>{label}</NTag>;
-      }
-    },
-    {
-      key: 'nickName',
-      title: $t('page.manage.user.nickName'),
-      align: 'center',
-      minWidth: 100
-    },
-    {
-      key: 'userPhone',
-      title: $t('page.manage.user.userPhone'),
-      align: 'center',
-      width: 120
-    },
-    {
-      key: 'userEmail',
-      title: $t('page.manage.user.userEmail'),
-      align: 'center',
-      minWidth: 200
-    },
-    {
-      key: 'status',
-      title: $t('page.manage.user.userStatus'),
-      align: 'center',
-      width: 100,
-      render: row => {
-        if (row.status === null) {
-          return null;
-        }
-
-        const tagMap: Record<Api.Common.EnableStatus, NaiveUI.ThemeColor> = {
-          1: 'success',
-          2: 'warning'
-        };
-
-        const label = $t(enableStatusRecord[row.status]);
-
-        return <NTag type={tagMap[row.status]}>{label}</NTag>;
-      }
     }
   ]
 });
@@ -141,14 +77,6 @@ function getTableValue(
 
   if (key === 'userRoles') {
     return item.userRoles.map(role => role).join(',');
-  }
-
-  if (key === 'status') {
-    return (item.status && $t(enableStatusRecord[item.status])) || null;
-  }
-
-  if (key === 'userGender') {
-    return (item.userGender && $t(userGenderRecord[item.userGender])) || null;
   }
 
   return item[key];
