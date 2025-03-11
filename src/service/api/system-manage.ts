@@ -62,3 +62,20 @@ export function fetchGetRoleMenu(params: { roleId: number }) {
     params
   });
 }
+
+/** get role button */
+export function fetchGetRoleButton(params: { roleId: number }) {
+  return request<Api.SystemManage.Button[]>({
+    url: '/systemManage/getRoleButton',
+    method: 'get',
+    params
+  });
+}
+
+/** get all button */
+export function fetchGetAllButton() {
+  return request<Api.SystemManage.Button[]>({
+    url: '/systemManage/getAllButton',
+    method: 'get'
+  });
+}

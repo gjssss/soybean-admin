@@ -210,5 +210,11 @@ declare namespace Api {
       pId: number;
       children?: MenuTree[];
     };
+
+    type Button = {
+      id: number;
+      code: string;
+      desc: string;
+    };
   }
 }

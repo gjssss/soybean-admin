@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, shallowRef } from 'vue';
 import { $t } from '@/locales';
+import { fetchGetAllButton, fetchGetRoleButton } from '@/service/api';
 
 defineOptions({
   name: 'ButtonAuthModal'
@@ -33,26 +34,23 @@ const tree = shallowRef<ButtonConfig[]>([]);
 
 async function getAllButtons() {
   // request
-  tree.value = [
-    { id: 1, label: 'button1', code: 'code1' },
-    { id: 2, label: 'button2', code: 'code2' },
-    { id: 3, label: 'button3', code: 'code3' },
-    { id: 4, label: 'button4', code: 'code4' },
-    { id: 5, label: 'button5', code: 'code5' },
-    { id: 6, label: 'button6', code: 'code6' },
-    { id: 7, label: 'button7', code: 'code7' },
-    { id: 8, label: 'button8', code: 'code8' },
-    { id: 9, label: 'button9', code: 'code9' },
-    { id: 10, label: 'button10', code: 'code10' }
-  ];
+  const { data } = await fetchGetRoleButton({
+    roleId: props.roleId
+  });
+  tree.value =
+    data?.map(item => ({
+      id: item.id,
+      label: item.code,
+      code: item.code
+    })) || [];
 }
 
 const checks = shallowRef<number[]>([]);
 
 async function getChecks() {
-  console.log(props.roleId);
   // request
-  checks.value = [1, 2, 3, 4, 5];
+  const { data } = await fetchGetAllButton();
+  checks.value = data?.map(item => item.id) || [];
 }
 
 function handleSubmit() {
