@@ -169,3 +169,56 @@ export function fetchUpdateRoleButton(data: { roleId: number; buttonIds: number[
     data
   });
 }
+
+/** create user */
+export function fetchCreateUser(data: Partial<Api.SystemManage.User>) {
+  return request({
+    url: '/systemManage/createUser',
+    method: 'post',
+    data
+  });
+}
+
+/** get user roles */
+export function fetchGetUserRoles(params: { id: number }) {
+  return request<Api.SystemManage.Role[]>({
+    url: '/systemManage/getUserRoles',
+    method: 'get',
+    params
+  });
+}
+
+/** update user password */
+export function fetchUpdateUserPassword(data: { id: number; password: string }) {
+  return request({
+    url: '/systemManage/updateUserPassword',
+    method: 'put',
+    data
+  });
+}
+
+export function fetchUpdateUserRole(data: { id: number; roleIds: number[] }) {
+  return request({
+    url: '/systemManage/updateUserRoles',
+    method: 'put',
+    data
+  });
+}
+
+/** delete user */
+export function fetchDeleteUser(data: { id: number }) {
+  return request({
+    url: '/systemManage/deleteUser',
+    method: 'delete',
+    data
+  });
+}
+
+/** batch delete user */
+export function fetchBatchDeleteUser(data: number[]) {
+  return request({
+    url: '/systemManage/batchDeleteUser',
+    method: 'delete',
+    data
+  });
+}

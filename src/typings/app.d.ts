@@ -575,6 +575,7 @@ declare namespace App {
           user: {
             title: string;
             userName: string;
+            password: string;
             userGender: string;
             nickName: string;
             userPhone: string;
@@ -583,6 +584,7 @@ declare namespace App {
             userRole: string;
             form: {
               userName: string;
+              password: string;
               userGender: string;
               nickName: string;
               userPhone: string;

@@ -1,6 +1,6 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm } from 'naive-ui';
-import { fetchGetUserList } from '@/service/api';
+import { fetchBatchDeleteUser, fetchDeleteUser, fetchGetUserList } from '@/service/api';
 import { $t } from '@/locales';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
@@ -54,10 +54,10 @@ const {
       width: 130,
       render: row => (
         <div class="flex-center gap-8px">
-          <NButton type="primary" ghost size="small" onClick={() => edit(row.userId)}>
+          <NButton type="primary" ghost size="small" onClick={() => edit(row.id)}>
             {$t('common.edit')}
           </NButton>
-          <NPopconfirm onPositiveClick={() => handleDelete(row.userId)}>
+          <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
             {{
               default: () => $t('common.confirmDelete'),
               trigger: () => (
@@ -88,14 +88,16 @@ const {
 async function handleBatchDelete() {
   // request
   console.log(checkedRowKeys.value);
-
+  await fetchBatchDeleteUser(checkedRowKeys.value.map(Number));
   onBatchDeleted();
 }
 
-function handleDelete(id: number) {
+async function handleDelete(id: number) {
   // request
   console.log(id);
-
+  await fetchDeleteUser({
+    id
+  });
   onDeleted();
 }
 
@@ -127,7 +129,7 @@ function edit(id: number) {
         :scroll-x="962"
         :loading="loading"
         remote
-        :row-key="row => row.userId"
+        :row-key="row => row.id"
         :pagination="mobilePagination"
         class="sm:h-full"
       />

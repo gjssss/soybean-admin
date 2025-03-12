@@ -37,11 +37,10 @@ export async function fetchGetUserRoutes(): Promise<{
   error: any;
 }> {
   const { data, error } = await request({ url: '/route/getUserRoutes' });
-  console.log(data);
 
   return {
     data: {
-      routes: data.map(convertAToMenuRoute),
+      routes: data?.map(convertAToMenuRoute) || [],
       home: 'home'
     },
     error

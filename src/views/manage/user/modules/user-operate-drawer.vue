@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
-import { fetchGetAllRoles } from '@/service/api';
+import {
+  fetchCreateUser,
+  fetchGetAllRoles,
+  fetchGetUserRoles,
+  fetchUpdateUserPassword,
+  fetchUpdateUserRole
+} from '@/service/api';
 import { $t } from '@/locales';
 
 defineOptions({
@@ -38,13 +44,16 @@ const title = computed(() => {
   return titles[props.operateType];
 });
 
-type Model = Pick<Api.SystemManage.User, 'userName' | 'userRoles'>;
+type Model = Pick<Api.SystemManage.User, 'userName' | 'userRoles'> & {
+  password: string;
+};
 
 const model = ref(createDefaultModel());
 
 function createDefaultModel(): Model {
   return {
     userName: '',
+    password: '',
     userRoles: []
   };
 }
@@ -64,26 +73,22 @@ async function getRoleOptions() {
   if (!error) {
     const options = data.map(item => ({
       label: item.roleName,
-      value: item.roleCode
+      value: String(item.id)
     }));
-
-    // the mock data does not have the roleCode, so fill it
-    // if the real request, remove the following code
-    const userRoleOptions = model.value.userRoles.map(item => ({
-      label: item,
-      value: item
-    }));
-    // end
-
-    roleOptions.value = [...userRoleOptions, ...options];
+    roleOptions.value = options;
   }
 }
 
-function handleInitModel() {
+async function handleInitModel() {
   model.value = createDefaultModel();
 
   if (props.operateType === 'edit' && props.rowData) {
-    Object.assign(model.value, props.rowData);
+    model.value.userRoles =
+      (
+        await fetchGetUserRoles({
+          id: props.rowData.id
+        })
+      ).data?.map(item => String(item.id)) || [];
   }
 }
 
@@ -94,7 +99,26 @@ function closeDrawer() {
 async function handleSubmit() {
   await validate();
   // request
-  window.$message?.success($t('common.updateSuccess'));
+  if (props.operateType === 'add') {
+    await fetchCreateUser(model.value);
+    window.$message?.success($t('common.addSuccess'));
+  } else {
+    console.log(props.rowData);
+    if (!props.rowData?.id) {
+      return;
+    }
+    if (model.value.password) {
+      await fetchUpdateUserPassword({
+        id: props.rowData.id,
+        password: model.value.password
+      });
+    }
+    await fetchUpdateUserRole({
+      id: props.rowData.id,
+      roleIds: model.value.userRoles.map(Number)
+    });
+    window.$message?.success($t('common.updateSuccess'));
+  }
   closeDrawer();
   emit('submitted');
 }
@@ -112,8 +136,11 @@ watch(visible, () => {
   <NDrawer v-model:show="visible" display-directive="show" :width="360">
     <NDrawerContent :title="title" :native-scrollbar="false" closable>
       <NForm ref="formRef" :model="model" :rules="rules">
-        <NFormItem :label="$t('page.manage.user.userName')" path="userName">
+        <NFormItem v-if="operateType === 'add'" :label="$t('page.manage.user.userName')" path="userName">
           <NInput v-model:value="model.userName" :placeholder="$t('page.manage.user.form.userName')" />
+        </NFormItem>
+        <NFormItem :label="$t('page.manage.user.password')" path="password">
+          <NInput v-model:value="model.password" :placeholder="$t('page.manage.user.form.password')" />
         </NFormItem>
         <NFormItem :label="$t('page.manage.user.userRole')" path="roles">
           <NSelect

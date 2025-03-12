@@ -60,7 +60,7 @@ declare namespace Api {
     }
 
     interface UserInfo {
-      userId: number;
+      id: number;
       userName: string;
       roles: string[];
       buttons: string[];
@@ -128,7 +128,7 @@ declare namespace Api {
     type User = Common.CommonRecord<{
       /** user name */
       userName: string;
-      userId: number;
+      id: number;
       userRoles: string[];
     }>;
 
