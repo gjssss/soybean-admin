@@ -101,6 +101,8 @@ declare namespace Api {
       roleCode: string;
       /** role description */
       roleDesc: string;
+      menu?: Partial<Menu>[];
+      buttons?: Partial<Button>[];
     }>;
 
     /** role search params */

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, shallowRef, watch } from 'vue';
 import { $t } from '@/locales';
-import { fetchGetMenuList, fetchGetRoleMenu } from '@/service/api';
+import { fetchGetMenuList, fetchGetRoleMenu, fetchUpdateRole } from '@/service/api';
 
 defineOptions({
   name: 'MenuAuthModal'
@@ -51,10 +51,13 @@ async function getChecks() {
   checks.value = data?.map(item => item.id) || [];
 }
 
-function handleSubmit() {
+async function handleSubmit() {
   console.log(checks.value, props.roleId);
   // request
-
+  await fetchUpdateRole({
+    id: props.roleId,
+    menu: checks.value.map(id => ({ id }))
+  });
   window.$message?.success?.($t('common.modifySuccess'));
 
   closeModal();

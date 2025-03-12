@@ -1,6 +1,6 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm } from 'naive-ui';
-import { fetchGetRoleList } from '@/service/api';
+import { fetchBatchDeleteRole, fetchDeleteRole, fetchGetRoleList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
@@ -94,13 +94,16 @@ const {
 async function handleBatchDelete() {
   // request
   console.log(checkedRowKeys.value);
-
+  await fetchBatchDeleteRole(checkedRowKeys.value.map(id => Number.parseInt(id, 10)));
   onBatchDeleted();
 }
 
-function handleDelete(id: number) {
+async function handleDelete(id: number) {
   // request
   console.log(id);
+  await fetchDeleteRole({
+    id
+  });
 
   onDeleted();
 }

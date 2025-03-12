@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue';
 import { useBoolean } from '@sa/hooks';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { $t } from '@/locales';
+import { fetchCreateRole, fetchUpdateRole } from '@/service/api';
 import MenuAuthModal from './menu-auth-modal.vue';
 import ButtonAuthModal from './button-auth-modal.vue';
 
@@ -78,7 +79,20 @@ function closeDrawer() {
 async function handleSubmit() {
   await validate();
   // request
-  window.$message?.success($t('common.updateSuccess'));
+  if (props.operateType === 'edit') {
+    await fetchUpdateRole({
+      id: props.rowData?.id,
+      roleName: model.value.roleName,
+      roleDesc: model.value.roleDesc
+    });
+    window.$message?.success($t('common.updateSuccess'));
+  } else {
+    await fetchCreateRole({
+      roleName: model.value.roleName,
+      roleDesc: model.value.roleDesc
+    });
+    window.$message?.success($t('common.addSuccess'));
+  }
   closeDrawer();
   emit('submitted');
 }

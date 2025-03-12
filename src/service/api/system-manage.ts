@@ -115,3 +115,57 @@ export function fetchBatchDeleteMenu(data: number[]) {
     data
   });
 }
+
+/** create role */
+export function fetchCreateRole(data: Partial<Api.SystemManage.Role>) {
+  return request({
+    url: '/systemManage/createRole',
+    method: 'post',
+    data
+  });
+}
+
+/** update role */
+export function fetchUpdateRole(data: Partial<Api.SystemManage.Role>) {
+  return request({
+    url: '/systemManage/updateRole',
+    method: 'put',
+    data
+  });
+}
+
+/** delete role */
+export function fetchDeleteRole(params: { id: number }) {
+  return request({
+    url: '/systemManage/deleteRole',
+    method: 'delete',
+    params
+  });
+}
+
+/** batch delete role */
+export function fetchBatchDeleteRole(data: number[]) {
+  return request({
+    url: '/systemManage/batchDeleteRole',
+    method: 'delete',
+    data
+  });
+}
+
+/** update role menu */
+export function fetchUpdateRoleMenu(data: { roleId: number; menuIds: number[] }) {
+  return request({
+    url: '/systemManage/updateRoleMenu',
+    method: 'put',
+    data
+  });
+}
+
+/** update role button */
+export function fetchUpdateRoleButton(data: { roleId: number; buttonIds: number[] }) {
+  return request({
+    url: '/systemManage/updateRoleButton',
+    method: 'put',
+    data
+  });
+}
