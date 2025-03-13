@@ -1,8 +1,9 @@
-import { request } from '../request';
-
 /** get constant routes */
 export function fetchGetConstantRoutes() {
-  return request<Api.Route.MenuRoute[]>({ url: '/route/getConstantRoutes' });
+  return {
+    data: [],
+    error: null
+  };
 }
 
 function convertAToMenuRoute(menu: any): Api.Route.MenuRoute {
@@ -36,14 +37,14 @@ export async function fetchGetUserRoutes(): Promise<{
   data: Api.Route.UserRoute;
   error: any;
 }> {
-  const { data, error } = await request({ url: '/route/getUserRoutes' });
+  const { data } = await Apis.general.get_menus_user();
 
   return {
     data: {
       routes: data?.map(convertAToMenuRoute) || [],
       home: 'home'
     },
-    error
+    error: null
   };
 }
 
@@ -52,6 +53,6 @@ export async function fetchGetUserRoutes(): Promise<{
  *
  * @param routeName route name
  */
-export function fetchIsRouteExist(routeName: string) {
-  return request<boolean>({ url: '/route/isRouteExist', params: { routeName } });
+export function fetchIsRouteExist() {
+  return false;
 }

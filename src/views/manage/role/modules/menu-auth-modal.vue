@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, shallowRef, watch } from 'vue';
 import { $t } from '@/locales';
-import { fetchGetMenuList, fetchGetRoleMenu, fetchUpdateRole } from '@/service/api';
+import type { System_menu } from '@/api/globals';
+import { wrapAlova } from '@/service/alova/wrap';
 
 defineOptions({
   name: 'MenuAuthModal'
@@ -24,11 +25,11 @@ function closeModal() {
 
 const title = computed(() => $t('common.edit') + $t('page.manage.role.menuAuth'));
 
-const tree = shallowRef<Api.SystemManage.MenuTree[]>([]);
+const tree = shallowRef<any[]>([]);
 
 async function getTree() {
-  const { error, data } = await fetchGetMenuList();
-  function mapFunc(item: Api.SystemManage.Menu): Api.SystemManage.MenuTree {
+  const { error, data } = await wrapAlova(Apis.general.get_menus());
+  function mapFunc(item: System_menu): any {
     return {
       id: item.id,
       label: item.menuName,
@@ -45,18 +46,22 @@ const checks = shallowRef<number[]>([]);
 
 async function getChecks() {
   // request
-  const { data } = await fetchGetRoleMenu({
-    roleId: props.roleId
+  const { data } = await Apis.general.get_menus_role({
+    params: {
+      roleId: props.roleId
+    }
   });
-  checks.value = data?.map(item => item.id) || [];
+  checks.value = data.map(item => item.id!) || [];
 }
 
 async function handleSubmit() {
   console.log(checks.value, props.roleId);
   // request
-  await fetchUpdateRole({
-    id: props.roleId,
-    menu: checks.value.map(id => ({ id }))
+  await Apis.general.post_roles_menus({
+    data: {
+      roleId: props.roleId,
+      menuIds: checks.value
+    }
   });
   window.$message?.success?.($t('common.modifySuccess'));
 

@@ -11,14 +11,14 @@ defineOptions({
 });
 
 const authStore = useAuthStore();
-const { routerPushByKey, toLogin } = useRouterPush();
+const { toLogin } = useRouterPush();
 const { SvgIconVNode } = useSvgIcon();
 
 function loginOrRegister() {
   toLogin();
 }
 
-type DropdownKey = 'user-center' | 'logout';
+type DropdownKey = 'logout';
 
 type DropdownOption =
   | {
@@ -33,11 +33,6 @@ type DropdownOption =
 
 const options = computed(() => {
   const opts: DropdownOption[] = [
-    {
-      label: $t('common.userCenter'),
-      key: 'user-center',
-      icon: SvgIconVNode({ icon: 'ph:user-circle', fontSize: 18 })
-    },
     {
       type: 'divider',
       key: 'divider'
@@ -67,9 +62,6 @@ function logout() {
 function handleDropdown(key: DropdownKey) {
   if (key === 'logout') {
     logout();
-  } else {
-    // If your other options are jumps from other routes, they will be directly supported here
-    routerPushByKey(key);
   }
 }
 </script>

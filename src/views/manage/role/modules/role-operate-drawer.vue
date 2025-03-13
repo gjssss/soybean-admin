@@ -3,7 +3,7 @@ import { computed, ref, watch } from 'vue';
 import { useBoolean } from '@sa/hooks';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { $t } from '@/locales';
-import { fetchCreateRole, fetchUpdateRole } from '@/service/api';
+import type { System_role } from '@/api/globals';
 import MenuAuthModal from './menu-auth-modal.vue';
 import ButtonAuthModal from './button-auth-modal.vue';
 
@@ -15,7 +15,7 @@ interface Props {
   /** the type of operation */
   operateType: NaiveUI.TableOperateType;
   /** the edit row data */
-  rowData?: Api.SystemManage.Role | null;
+  rowData?: System_role | null;
 }
 
 const props = defineProps<Props>();
@@ -80,16 +80,20 @@ async function handleSubmit() {
   await validate();
   // request
   if (props.operateType === 'edit') {
-    await fetchUpdateRole({
-      id: props.rowData?.id,
-      roleName: model.value.roleName,
-      roleDesc: model.value.roleDesc
+    await Apis.general.post_roles_update({
+      data: {
+        id: props.rowData?.id,
+        roleName: model.value.roleName,
+        roleDesc: model.value.roleDesc
+      }
     });
     window.$message?.success($t('common.updateSuccess'));
   } else {
-    await fetchCreateRole({
-      roleName: model.value.roleName,
-      roleDesc: model.value.roleDesc
+    await Apis.general.post_roles({
+      data: {
+        roleName: model.value.roleName,
+        roleDesc: model.value.roleDesc
+      }
     });
     window.$message?.success($t('common.addSuccess'));
   }

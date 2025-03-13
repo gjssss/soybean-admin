@@ -1,14 +1,13 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm } from 'naive-ui';
-import { fetchBatchDeleteRole, fetchDeleteRole, fetchGetRoleList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
+import { wrapAlovaTable } from '@/service/alova/wrap';
 import RoleOperateDrawer from './modules/role-operate-drawer.vue';
 import RoleSearch from './modules/role-search.vue';
 
 const appStore = useAppStore();
-
 const {
   columns,
   columnChecks,
@@ -20,15 +19,17 @@ const {
   searchParams,
   resetSearchParams
 } = useTable({
-  apiFn: fetchGetRoleList,
+  apiFn: (params: { current: number; size: number }) =>
+    wrapAlovaTable(
+      Apis.general.get_roles({
+        params
+      })
+    ),
   apiParams: {
     current: 1,
-    size: 10,
+    size: 10
     // if you want to use the searchParams in Form, you need to define the following properties, and the value is null
     // the value can not be undefined, otherwise the property in Form will not be reactive
-    status: null,
-    roleName: null,
-    roleCode: null
   },
   columns: () => [
     {
@@ -94,15 +95,21 @@ const {
 async function handleBatchDelete() {
   // request
   console.log(checkedRowKeys.value);
-  await fetchBatchDeleteRole(checkedRowKeys.value.map(id => Number.parseInt(id, 10)));
+  await Apis.general.post_roles_batchdelete({
+    data: {
+      ids: checkedRowKeys.value.map(Number)
+    }
+  });
   onBatchDeleted();
 }
 
 async function handleDelete(id: number) {
   // request
   console.log(id);
-  await fetchDeleteRole({
-    id
+  await Apis.general.post_users_delete({
+    data: {
+      id
+    }
   });
 
   onDeleted();

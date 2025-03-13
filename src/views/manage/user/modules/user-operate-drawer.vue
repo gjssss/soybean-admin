@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
-import {
-  fetchCreateUser,
-  fetchGetAllRoles,
-  fetchGetUserRoles,
-  fetchUpdateUserPassword,
-  fetchUpdateUserRole
-} from '@/service/api';
 import { $t } from '@/locales';
+import { wrapAlova } from '@/service/alova/wrap';
+import type { System_user } from '@/api/globals';
 
 defineOptions({
   name: 'UserOperateDrawer'
@@ -18,7 +13,7 @@ interface Props {
   /** the type of operation */
   operateType: NaiveUI.TableOperateType;
   /** the edit row data */
-  rowData?: Api.SystemManage.User | null;
+  rowData?: System_user | null;
 }
 
 const props = defineProps<Props>();
@@ -68,7 +63,7 @@ const rules: Record<RuleKey, App.Global.FormRule> = {
 const roleOptions = ref<CommonType.Option<string>[]>([]);
 
 async function getRoleOptions() {
-  const { error, data } = await fetchGetAllRoles();
+  const { error, data } = await wrapAlova(Apis.general.get_roles_all());
 
   if (!error) {
     const options = data.map(item => ({
@@ -85,8 +80,10 @@ async function handleInitModel() {
   if (props.operateType === 'edit' && props.rowData) {
     model.value.userRoles =
       (
-        await fetchGetUserRoles({
-          id: props.rowData.id
+        await Apis.general.get_users_roles({
+          params: {
+            id: props.rowData.id!
+          }
         })
       ).data?.map(item => String(item.id)) || [];
   }
@@ -100,7 +97,13 @@ async function handleSubmit() {
   await validate();
   // request
   if (props.operateType === 'add') {
-    await fetchCreateUser(model.value);
+    await Apis.general.post_users({
+      data: {
+        userName: model.value.userName,
+        password: model.value.password,
+        roleIds: model.value.userRoles.map(Number)
+      }
+    });
     window.$message?.success($t('common.addSuccess'));
   } else {
     console.log(props.rowData);
@@ -108,14 +111,18 @@ async function handleSubmit() {
       return;
     }
     if (model.value.password) {
-      await fetchUpdateUserPassword({
-        id: props.rowData.id,
-        password: model.value.password
+      await Apis.general.post_users_password({
+        data: {
+          id: props.rowData.id,
+          password: model.value.password
+        }
       });
     }
-    await fetchUpdateUserRole({
-      id: props.rowData.id,
-      roleIds: model.value.userRoles.map(Number)
+    await Apis.general.post_users_roles({
+      data: {
+        id: props.rowData.id,
+        roleIds: model.value.userRoles.map(Number)
+      }
     });
     window.$message?.success($t('common.updateSuccess'));
   }

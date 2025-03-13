@@ -92,6 +92,7 @@
     "xlsx": "0.18.5"
   },
   "devDependencies": {
+    "@alova/wormhole": "^1.0.6",
     "@amap/amap-jsapi-types": "0.0.15",
     "@elegant-router/vue": "0.3.8",
     "@iconify/json": "2.2.297",

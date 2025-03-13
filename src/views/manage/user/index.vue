@@ -1,9 +1,9 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm } from 'naive-ui';
-import { fetchBatchDeleteUser, fetchDeleteUser, fetchGetUserList } from '@/service/api';
 import { $t } from '@/locales';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
+import { wrapAlovaTable } from '@/service/alova/wrap';
 import UserOperateDrawer from './modules/user-operate-drawer.vue';
 import UserSearch from './modules/user-search.vue';
 
@@ -20,14 +20,18 @@ const {
   searchParams,
   resetSearchParams
 } = useTable({
-  apiFn: fetchGetUserList,
+  apiFn: (params: { current: number; size: number }) =>
+    wrapAlovaTable(
+      Apis.general.get_users({
+        params
+      })
+    ),
   showTotal: true,
   apiParams: {
     current: 1,
-    size: 10,
+    size: 10
     // if you want to use the searchParams in Form, you need to define the following properties, and the value is null
     // the value can not be undefined, otherwise the property in Form will not be reactive
-    userName: null
   },
   columns: () => [
     {
@@ -88,15 +92,19 @@ const {
 async function handleBatchDelete() {
   // request
   console.log(checkedRowKeys.value);
-  await fetchBatchDeleteUser(checkedRowKeys.value.map(Number));
+  await Apis.general.post_users_batchdelete({
+    data: checkedRowKeys.value.map(Number)
+  });
   onBatchDeleted();
 }
 
 async function handleDelete(id: number) {
   // request
   console.log(id);
-  await fetchDeleteUser({
-    id
+  await Apis.general.post_users_delete({
+    data: {
+      id
+    }
   });
   onDeleted();
 }

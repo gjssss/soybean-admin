@@ -4,9 +4,9 @@ import { defineStore } from 'pinia';
 import { useLoading } from '@sa/hooks';
 import { SetupStoreId } from '@/enum';
 import { useRouterPush } from '@/hooks/common/router';
-import { fetchGetUserInfo, fetchLogin } from '@/service/api';
 import { localStg } from '@/utils/storage';
 import { $t } from '@/locales';
+import { wrapAlova } from '@/service/alova/wrap';
 import { useRouteStore } from '../route';
 import { useTabStore } from '../tab';
 import { clearAuthStorage, getToken } from './shared';
@@ -63,9 +63,16 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   async function login(userName: string, password: string, redirect = true) {
     startLoading();
 
-    const { data: loginToken, error } = await fetchLogin(userName, password);
+    const { data: loginToken, error } = await wrapAlova(
+      Apis.general.post_auth_login({
+        data: {
+          userName,
+          password
+        }
+      })
+    );
 
-    if (!error) {
+    if (!error && loginToken) {
       const pass = await loginByToken(loginToken);
 
       if (pass) {
@@ -102,7 +109,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   }
 
   async function getUserInfo() {
-    const { data: info, error } = await fetchGetUserInfo();
+    const { data: info, error } = await wrapAlova(Apis.general.get_auth_getuserinfo());
 
     if (!error) {
       // update store

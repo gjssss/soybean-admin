@@ -35,16 +35,10 @@ declare namespace Api {
     type CommonRecord<T = any> = {
       /** record id */
       id: number;
-      /** record creator */
-      createBy: string;
       /** record create time */
       createTime: string;
-      /** record updater */
-      updateBy: string;
       /** record update time */
       updateTime: string;
-      /** record status */
-      status: EnableStatus | null;
     } & T;
   }
 
@@ -107,7 +101,7 @@ declare namespace Api {
 
     /** role search params */
     type RoleSearchParams = CommonType.RecordNullable<
-      Pick<Api.SystemManage.Role, 'roleName' | 'roleCode' | 'status'> & CommonSearchParams
+      Pick<Api.SystemManage.Role, 'roleName' | 'roleCode'> & CommonSearchParams
     >;
 
     /** role list */

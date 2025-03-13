@@ -3,13 +3,14 @@ import { computed, ref } from 'vue';
 import type { Ref } from 'vue';
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
 import { useBoolean } from '@sa/hooks';
-import { fetchBatchDeleteMenu, fetchDeleteMenu, fetchGetMenuList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { yesOrNoRecord } from '@/constants/common';
-import { enableStatusRecord, menuTypeRecord } from '@/constants/business';
+import { menuTypeRecord } from '@/constants/business';
 import SvgIcon from '@/components/custom/svg-icon.vue';
+import type { System_menu } from '@/api/globals';
+import { wrapAlova } from '@/service/alova/wrap';
 import MenuOperateModal, { type OperateType } from './modules/menu-operate-modal.vue';
 
 const appStore = useAppStore();
@@ -23,7 +24,7 @@ const { columns, columnChecks, data, loading, pagination, getData, getDataByPage
     // 由于没有不分页的封装，所以只能这样写
     return {
       data: {
-        records: (await fetchGetMenuList()).data!,
+        records: (await wrapAlova(Apis.general.get_menus())).data!,
         current: 1,
         size: 10,
         total: 10
@@ -49,7 +50,7 @@ const { columns, columnChecks, data, loading, pagination, getData, getDataByPage
       align: 'center',
       width: 80,
       render: row => {
-        const tagMap: Record<Api.SystemManage.MenuType, NaiveUI.ThemeColor> = {
+        const tagMap: Record<string, NaiveUI.ThemeColor> = {
           1: 'default',
           2: 'primary'
         };
@@ -67,7 +68,7 @@ const { columns, columnChecks, data, loading, pagination, getData, getDataByPage
       render: row => {
         const { i18nKey, menuName } = row;
 
-        const label = i18nKey ? $t(i18nKey) : menuName;
+        const label = i18nKey ? $t(i18nKey as any) : menuName;
 
         return <span>{label}</span>;
       }
@@ -100,26 +101,6 @@ const { columns, columnChecks, data, loading, pagination, getData, getDataByPage
       title: $t('page.manage.menu.routePath'),
       align: 'center',
       minWidth: 120
-    },
-    {
-      key: 'status',
-      title: $t('page.manage.menu.menuStatus'),
-      align: 'center',
-      width: 80,
-      render: row => {
-        if (row.status === null) {
-          return null;
-        }
-
-        const tagMap: Record<Api.Common.EnableStatus, NaiveUI.ThemeColor> = {
-          1: 'success',
-          2: 'warning'
-        };
-
-        const label = $t(enableStatusRecord[row.status]);
-
-        return <NTag type={tagMap[row.status]}>{label}</NTag>;
-      }
     },
     {
       key: 'hideInMenu',
@@ -166,7 +147,7 @@ const { columns, columnChecks, data, loading, pagination, getData, getDataByPage
           <NButton type="primary" ghost size="small" onClick={() => handleEdit(row)}>
             {$t('common.edit')}
           </NButton>
-          <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
+          <NPopconfirm onPositiveClick={() => handleDelete(row.id!)}>
             {{
               default: () => $t('common.confirmDelete'),
               trigger: () => (
@@ -181,12 +162,11 @@ const { columns, columnChecks, data, loading, pagination, getData, getDataByPage
     }
   ]
 });
-
 const { checkedRowKeys, onBatchDeleted, onDeleted } = useTableOperate(data, getData);
 
 const menuNameList = computed(() => {
   const nameList: string[] = [];
-  function mapFunc(item: Api.SystemManage.Menu) {
+  function mapFunc(item: System_menu) {
     nameList.push(item.routeName);
     if (item.children) {
       item.children.forEach(mapFunc);
@@ -206,28 +186,36 @@ function handleAdd() {
 async function handleBatchDelete() {
   // request
   console.log(checkedRowKeys.value);
-  await fetchBatchDeleteMenu(checkedRowKeys.value.map(i => Number.parseInt(i, 10)));
+  await Apis.general.post_menus_batchdelete({
+    data: {
+      ids: checkedRowKeys.value.map(i => Number.parseInt(i, 10))
+    }
+  });
   onBatchDeleted();
 }
 
 async function handleDelete(id: number) {
   // request
   console.log(id);
-  await fetchDeleteMenu({ id });
+  await Apis.general.post_menus_delete({
+    data: {
+      id
+    }
+  });
   onDeleted();
 }
 
 /** the edit menu data or the parent menu data when adding a child menu */
-const editingData: Ref<Api.SystemManage.Menu | null> = ref(null);
+const editingData: Ref<System_menu | null> = ref(null);
 
-function handleEdit(item: Api.SystemManage.Menu) {
+function handleEdit(item: System_menu) {
   operateType.value = 'edit';
   editingData.value = { ...item };
 
   openModal();
 }
 
-function handleAddChildMenu(item: Api.SystemManage.Menu) {
+function handleAddChildMenu(item: System_menu) {
   operateType.value = 'addChild';
 
   editingData.value = { ...item };

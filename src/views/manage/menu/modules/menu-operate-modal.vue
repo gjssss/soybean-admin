@@ -6,7 +6,7 @@ import { $t } from '@/locales';
 import { enableStatusOptions, menuIconTypeOptions, menuTypeOptions } from '@/constants/business';
 import SvgIcon from '@/components/custom/svg-icon.vue';
 import { getLocalIcons } from '@/utils/icon';
-import { fetchCreateMenu, fetchUpdateMenu } from '@/service/api';
+import type { System_button, System_menu } from '@/api/globals';
 import {
   getLayoutAndPage,
   getPathParamFromRoutePath,
@@ -25,7 +25,7 @@ interface Props {
   /** the type of operation */
   operateType: OperateType;
   /** the edit menu data or the parent menu data when adding a child menu */
-  rowData?: Api.SystemManage.Menu | null;
+  rowData?: System_menu | null;
   /** all pages */
   allPages: string[];
 }
@@ -55,7 +55,7 @@ const title = computed(() => {
 });
 
 type Model = Pick<
-  Api.SystemManage.Menu,
+  System_menu,
   | 'menuType'
   | 'menuName'
   | 'routeName'
@@ -75,8 +75,8 @@ type Model = Pick<
   | 'multiTab'
   | 'fixedIndexInTab'
 > & {
-  query: NonNullable<Api.SystemManage.Menu['query']>;
-  buttons: NonNullable<Api.SystemManage.Menu['buttons']>;
+  query: NonNullable<System_menu['query']>;
+  buttons: NonNullable<System_menu['buttons']>;
   layout: string;
   page: string;
   pathParam: string;
@@ -94,7 +94,7 @@ function createDefaultModel(): Model {
     component: '',
     layout: '',
     page: '',
-    i18nKey: null,
+    i18nKey: '',
     icon: '',
     iconType: '1',
     parentId: 0,
@@ -102,11 +102,11 @@ function createDefaultModel(): Model {
     keepAlive: false,
     constant: false,
     order: 0,
-    href: null,
+    href: undefined,
     hideInMenu: false,
-    activeMenu: null,
+    activeMenu: undefined,
     multiTab: false,
-    fixedIndexInTab: null,
+    fixedIndexInTab: undefined,
     query: [],
     buttons: []
   };
@@ -208,12 +208,12 @@ function handleUpdateI18nKeyByRouteName() {
   if (model.value.routeName) {
     model.value.i18nKey = `route.${model.value.routeName}` as App.I18n.I18nKey;
   } else {
-    model.value.i18nKey = null;
+    model.value.i18nKey = '';
   }
 }
 
 function handleCreateButton() {
-  const buttonItem: Api.SystemManage.MenuButton = {
+  const buttonItem: System_button = {
     code: '',
     desc: ''
   };
@@ -240,9 +240,13 @@ async function handleSubmit() {
 
   console.log('params: ', params);
   if (props.operateType === 'edit') {
-    await fetchUpdateMenu(params);
+    await Apis.general.post_menus_update({
+      data: params
+    });
   } else {
-    await fetchCreateMenu(params);
+    await Apis.general.post_menus({
+      data: params
+    });
   }
   // request
   window.$message?.success($t('common.updateSuccess'));
