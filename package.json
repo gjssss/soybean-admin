@@ -44,7 +44,8 @@
     "preview": "vite preview",
     "release": "sa release",
     "typecheck": "vue-tsc --noEmit --skipLibCheck",
-    "update-pkg": "sa update-pkg"
+    "update-pkg": "sa update-pkg",
+    "generate-type": "pnpm dlx esno script/generate-type.ts"
   },
   "dependencies": {
     "@antv/data-set": "0.11.8",
@@ -115,6 +116,7 @@
     "@vitejs/plugin-vue-jsx": "4.1.1",
     "eslint": "9.22.0",
     "eslint-plugin-vue": "9.32.0",
+    "eson": "^0.5.0",
     "lint-staged": "15.4.1",
     "sass": "1.83.4",
     "simple-git-hooks": "2.11.1",

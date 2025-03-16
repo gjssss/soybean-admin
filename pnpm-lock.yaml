@@ -207,6 +207,9 @@ importers:
       eslint-plugin-vue:
         specifier: 9.32.0
         version: 9.32.0(eslint@9.22.0(jiti@2.4.2))
+      eson:
+        specifier: ^0.5.0
+        version: 0.5.0
       lint-staged:
         specifier: 15.4.1
         version: 15.4.1
@@ -3452,6 +3455,9 @@ packages:
   esniff@2.0.1:
     resolution: {integrity: sha512-kTUIGKQ/mDPFoJ0oVfcmyJn4iBDRptjNVIzwIFR7tqWXdVI9xfA2RMwY/gbSpJG3lkdWNEjLap/NqVHZiJsdfg==}
     engines: {node: '>=0.10'}
+
+  eson@0.5.0:
+    resolution: {integrity: sha512-+WCCON+NAEAx53A/5PPRac2fpFkeOCSNzsTBh4h8TcU+9GPdUdkfi4VyhrFtHJnqXdmFVrcmserMvmRGj0PIyw==}
 
   espree@10.3.0:
     resolution: {integrity: sha512-0QYC8b24HWY8zjRnDTL6RiHfDbAWn63qb4LMj1Z4b076A4une81+z03Kg7l7mn/48PUTqoLptSXez8oknU8Clg==}
@@ -10205,6 +10211,10 @@ snapshots:
       es5-ext: 0.10.64
       event-emitter: 0.3.5
       type: 2.7.3
+
+  eson@0.5.0:
+    dependencies:
+      glob: 11.0.1
 
   espree@10.3.0:
     dependencies:

@@ -3,7 +3,7 @@ import type { Config } from '@alova/wormhole'
 export default {
   generator: [
     {
-      input: 'http://localhost:8080/swagger/doc.json',
+      input: 'swagger/doc.json',
       output: 'src/api',
     },
   ],
