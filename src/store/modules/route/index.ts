@@ -5,7 +5,7 @@ import { router } from '@/router'
 import { getRouteName, getRoutePath } from '@/router/elegant/transform'
 import { createStaticRoutes, getAuthVueRoutes } from '@/router/routes'
 import { ROOT_ROUTE } from '@/router/routes/builtin'
-import { fetchGetUserRoutes } from '@/service/api'
+import { fetchGetConstantRoutes, fetchGetUserRoutes } from '@/service/api'
 import { useBoolean } from '@sa/hooks'
 import { defineStore } from 'pinia'
 import { computed, nextTick, ref, shallowRef } from 'vue'
@@ -156,18 +156,20 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
     const staticRoute = createStaticRoutes()
 
     addConstantRoutes(staticRoute.constantRoutes)
-    // if (authRouteMode.value === 'static') {
-    //   addConstantRoutes(staticRoute.constantRoutes);
-    // } else {
-    //   const { data, error } = await fetchGetConstantRoutes();
+    if (authRouteMode.value === 'static') {
+      addConstantRoutes(staticRoute.constantRoutes)
+    }
+    else {
+      const { data, error } = await fetchGetConstantRoutes()
 
-    //   if (!error) {
-    //     addConstantRoutes(data);
-    //   } else {
-    //     // if fetch constant routes failed, use static constant routes
-    //     addConstantRoutes(staticRoute.constantRoutes);
-    //   }
-    // }
+      if (!error) {
+        addConstantRoutes(data)
+      }
+      else {
+        // if fetch constant routes failed, use static constant routes
+        addConstantRoutes(staticRoute.constantRoutes)
+      }
+    }
 
     handleConstantAndAuthRoutes()
 

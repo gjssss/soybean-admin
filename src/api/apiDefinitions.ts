@@ -30,6 +30,7 @@ export default {
   'general.get_menus': ['GET', '/menus'],
   'general.post_menus': ['POST', '/menus'],
   'general.post_menus_batchdelete': ['POST', '/menus/batchDelete'],
+  'general.get_menus_constant': ['GET', '/menus/constant'],
   'general.post_menus_delete': ['POST', '/menus/delete'],
   'general.get_menus_role': ['GET', '/menus/role'],
   'general.post_menus_update': ['POST', '/menus/update'],

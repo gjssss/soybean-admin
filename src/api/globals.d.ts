@@ -1044,6 +1044,77 @@ declare global {
       /**
        * ---
        *
+       * [GET] 获取常量菜单
+       *
+       * **path:** /menus/constant
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // [required]
+       *   code: string
+       *   // [required]
+       *   data: Array<{
+       *     // 激活的菜单名
+       *     activeMenu?: string
+       *     buttons?: Array<{
+       *       code?: string
+       *       createTime?: string
+       *       desc?: string
+       *       id?: number
+       *       updateTime?: string
+       *     }>
+       *     children?: Array<System_menu>
+       *     component?: string
+       *     constant?: boolean
+       *     createTime?: string
+       *     fixedIndexInTab?: number
+       *     // 是否隐藏菜单
+       *     hideInMenu?: boolean
+       *     href?: string
+       *     // [required]
+       *     i18nKey: string
+       *     icon?: string
+       *     // [required]
+       *     iconType: string
+       *     id?: number
+       *     keepAlive?: boolean
+       *     localIcon?: string
+       *     // [required]
+       *     menuName: string
+       *     // [required]
+       *     menuType: string
+       *     // 是否支持多标签
+       *     multiTab?: boolean
+       *     order?: number
+       *     // 父菜单ID
+       *     parentId?: number
+       *     query?: Array<{
+       *       id?: number
+       *       key?: string
+       *       menuId?: number
+       *       value?: string
+       *     }>
+       *     // [required]
+       *     routeName: string
+       *     // [required]
+       *     routePath: string
+       *     status?: string
+       *     updateTime?: string
+       *   }>
+       *   // [required]
+       *   msg: string
+       * }
+       * ```
+       */
+      get_menus_constant<Config extends Alova2MethodConfig<Utils_response_array_system_menu>>(
+        config?: Config
+      ): Alova2Method<Utils_response_array_system_menu, 'general.get_menus_constant', Config>;
+      /**
+       * ---
+       *
        * [POST] 删除菜单
        *
        * **path:** /menus/delete

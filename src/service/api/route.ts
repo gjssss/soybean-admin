@@ -1,7 +1,8 @@
 /** get constant routes */
-export function fetchGetConstantRoutes() {
+export async function fetchGetConstantRoutes() {
+  const { data } = await Apis.general.get_menus_constant()
   return {
-    data: [],
+    data: data.map(convertAToMenuRoute),
     error: null,
   }
 }
