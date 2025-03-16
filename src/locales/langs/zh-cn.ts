@@ -1,4 +1,4 @@
-const local: App.I18n.Schema = {
+const local = {
   system: {
     title: 'Soybean 管理系统',
     updateTitle: '系统版本更新通知',
@@ -177,6 +177,7 @@ const local: App.I18n.Schema = {
     'manage_user-detail': '用户详情',
     'manage_role': '角色管理',
     'manage_menu': '菜单管理',
+    'manage_button': '按钮管理',
     'exception': '异常页',
     'exception_403': '403',
     'exception_404': '404',
@@ -442,6 +443,19 @@ const local: App.I18n.Schema = {
           iconify: 'iconify图标',
           local: '本地图标',
         },
+      },
+      button: {
+        title: '按钮列表',
+        id: 'ID',
+        parentId: '父级按钮ID',
+        buttonCode: '按钮编码',
+        buttonDesc: '按钮描述',
+        form: {
+          buttonCode: '请输入按钮编码',
+          buttonDesc: '请输入按钮描述',
+        },
+        addButton: '新增按钮',
+        editButton: '编辑按钮',
       },
     },
   },

@@ -88,6 +88,15 @@ export const generatedRoutes: GeneratedRoute[] = [
     },
     children: [
       {
+        name: 'manage_button',
+        path: '/manage/button',
+        component: 'view.manage_button',
+        meta: {
+          title: 'manage_button',
+          i18nKey: 'route.manage_button'
+        }
+      },
+      {
         name: 'manage_menu',
         path: '/manage/menu',
         component: 'view.manage_menu',

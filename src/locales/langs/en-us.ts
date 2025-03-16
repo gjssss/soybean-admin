@@ -1,4 +1,4 @@
-const local: App.I18n.Schema = {
+const local = {
   system: {
     title: 'SoybeanAdmin',
     updateTitle: 'System Version Update Notification',
@@ -177,6 +177,7 @@ const local: App.I18n.Schema = {
     'manage_user-detail': 'User Detail',
     'manage_role': 'Role Manage',
     'manage_menu': 'Menu Manage',
+    'manage_button': 'Button Manage',
     'exception': 'Exception',
     'exception_403': '403',
     'exception_404': '404',
@@ -442,6 +443,18 @@ const local: App.I18n.Schema = {
           iconify: 'Iconify Icon',
           local: 'Local Icon',
         },
+      },
+      button: {
+        title: 'Button List',
+        id: 'ID',
+        buttonCode: 'Button Code',
+        buttonDesc: 'Button Desc',
+        form: {
+          buttonCode: 'Please enter button code',
+          buttonDesc: 'Please enter button description',
+        },
+        addButton: 'Add Button',
+        editButton: 'Edit Button',
       },
     },
   },

@@ -92,7 +92,6 @@ type Alova2Method<
 export type System_userdto = {
   buttons?: string[];
   createTime?: string;
-  deleteTime?: string;
   id?: number;
   roles?: string[];
   updateTime?: string;
@@ -138,8 +137,10 @@ export type Utils_response_system_token = {
 };
 export type System_button = {
   code?: string;
+  createTime?: string;
   desc?: string;
   id?: number;
+  updateTime?: string;
 };
 export type Utils_response_array_system_button = {
   /**
@@ -197,18 +198,13 @@ export type System_menu = {
   buttons?: System_button[];
   children?: System_menu[];
   component?: string;
-  /**
-   * [required]
-   */
-  constant: boolean;
+  constant?: boolean;
   createTime?: string;
-  deleteTime?: string;
   fixedIndexInTab?: number;
   /**
    * 是否隐藏菜单
-   * [required]
    */
-  hideInMenu: boolean;
+  hideInMenu?: boolean;
   href?: string;
   /**
    * [required]
@@ -220,10 +216,7 @@ export type System_menu = {
    */
   iconType: string;
   id?: number;
-  /**
-   * [required]
-   */
-  keepAlive: boolean;
+  keepAlive?: boolean;
   localIcon?: string;
   /**
    * [required]
@@ -235,13 +228,9 @@ export type System_menu = {
   menuType: string;
   /**
    * 是否支持多标签
-   * [required]
    */
-  multiTab: boolean;
-  /**
-   * [required]
-   */
-  order: number;
+  multiTab?: boolean;
+  order?: number;
   /**
    * 父菜单ID
    */
@@ -275,7 +264,6 @@ export type Utils_response_array_system_menu = {
 export type System_role = {
   buttons?: System_button[];
   createTime?: string;
-  deleteTime?: string;
   id?: number;
   menu?: System_menu[];
   roleDesc?: string;
@@ -344,7 +332,6 @@ export type Utils_response_array_system_role = {
 };
 export type System_user = {
   createTime?: string;
-  deleteTime?: string;
   id?: number;
   password?: string;
   roles?: System_role[];
@@ -435,7 +422,6 @@ declare global {
        *   data: {
        *     buttons?: string[]
        *     createTime?: string
-       *     deleteTime?: string
        *     id?: number
        *     roles?: string[]
        *     updateTime?: string
@@ -556,8 +542,10 @@ declare global {
        *   // [required]
        *   data: Array<{
        *     code?: string
+       *     createTime?: string
        *     desc?: string
        *     id?: number
+       *     updateTime?: string
        *   }>
        *   // [required]
        *   msg: string
@@ -580,8 +568,10 @@ declare global {
        * ```ts
        * type RequestBody = {
        *   code?: string
+       *   createTime?: string
        *   desc?: string
        *   id?: number
+       *   updateTime?: string
        * }
        * ```
        *
@@ -595,8 +585,10 @@ declare global {
        *   // [required]
        *   data: {
        *     code?: string
+       *     createTime?: string
        *     desc?: string
        *     id?: number
+       *     updateTime?: string
        *   }
        *   // [required]
        *   msg: string
@@ -716,8 +708,10 @@ declare global {
        *   // [required]
        *   data: Array<{
        *     code?: string
+       *     createTime?: string
        *     desc?: string
        *     id?: number
+       *     updateTime?: string
        *   }>
        *   // [required]
        *   msg: string
@@ -750,8 +744,10 @@ declare global {
        * ```ts
        * type RequestBody = {
        *   code?: string
+       *   createTime?: string
        *   desc?: string
        *   id?: number
+       *   updateTime?: string
        * }
        * ```
        *
@@ -793,8 +789,10 @@ declare global {
        *   // [required]
        *   data: Array<{
        *     code?: string
+       *     createTime?: string
        *     desc?: string
        *     id?: number
+       *     updateTime?: string
        *   }>
        *   // [required]
        *   msg: string
@@ -824,19 +822,18 @@ declare global {
        *     activeMenu?: string
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     children?: Array<System_menu>
        *     component?: string
-       *     // [required]
-       *     constant: boolean
+       *     constant?: boolean
        *     createTime?: string
-       *     deleteTime?: string
        *     fixedIndexInTab?: number
        *     // 是否隐藏菜单
-       *     // [required]
-       *     hideInMenu: boolean
+       *     hideInMenu?: boolean
        *     href?: string
        *     // [required]
        *     i18nKey: string
@@ -844,18 +841,15 @@ declare global {
        *     // [required]
        *     iconType: string
        *     id?: number
-       *     // [required]
-       *     keepAlive: boolean
+       *     keepAlive?: boolean
        *     localIcon?: string
        *     // [required]
        *     menuName: string
        *     // [required]
        *     menuType: string
        *     // 是否支持多标签
-       *     // [required]
-       *     multiTab: boolean
-       *     // [required]
-       *     order: number
+       *     multiTab?: boolean
+       *     order?: number
        *     // 父菜单ID
        *     parentId?: number
        *     query?: Array<{
@@ -895,19 +889,18 @@ declare global {
        *   activeMenu?: string
        *   buttons?: Array<{
        *     code?: string
+       *     createTime?: string
        *     desc?: string
        *     id?: number
+       *     updateTime?: string
        *   }>
        *   children?: Array<System_menu>
        *   component?: string
-       *   // [required]
-       *   constant: boolean
+       *   constant?: boolean
        *   createTime?: string
-       *   deleteTime?: string
        *   fixedIndexInTab?: number
        *   // 是否隐藏菜单
-       *   // [required]
-       *   hideInMenu: boolean
+       *   hideInMenu?: boolean
        *   href?: string
        *   // [required]
        *   i18nKey: string
@@ -915,18 +908,15 @@ declare global {
        *   // [required]
        *   iconType: string
        *   id?: number
-       *   // [required]
-       *   keepAlive: boolean
+       *   keepAlive?: boolean
        *   localIcon?: string
        *   // [required]
        *   menuName: string
        *   // [required]
        *   menuType: string
        *   // 是否支持多标签
-       *   // [required]
-       *   multiTab: boolean
-       *   // [required]
-       *   order: number
+       *   multiTab?: boolean
+       *   order?: number
        *   // 父菜单ID
        *   parentId?: number
        *   query?: Array<{
@@ -957,19 +947,18 @@ declare global {
        *     activeMenu?: string
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     children?: Array<System_menu>
        *     component?: string
-       *     // [required]
-       *     constant: boolean
+       *     constant?: boolean
        *     createTime?: string
-       *     deleteTime?: string
        *     fixedIndexInTab?: number
        *     // 是否隐藏菜单
-       *     // [required]
-       *     hideInMenu: boolean
+       *     hideInMenu?: boolean
        *     href?: string
        *     // [required]
        *     i18nKey: string
@@ -977,18 +966,15 @@ declare global {
        *     // [required]
        *     iconType: string
        *     id?: number
-       *     // [required]
-       *     keepAlive: boolean
+       *     keepAlive?: boolean
        *     localIcon?: string
        *     // [required]
        *     menuName: string
        *     // [required]
        *     menuType: string
        *     // 是否支持多标签
-       *     // [required]
-       *     multiTab: boolean
-       *     // [required]
-       *     order: number
+       *     multiTab?: boolean
+       *     order?: number
        *     // 父菜单ID
        *     parentId?: number
        *     query?: Array<{
@@ -1125,19 +1111,18 @@ declare global {
        *     activeMenu?: string
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     children?: Array<System_menu>
        *     component?: string
-       *     // [required]
-       *     constant: boolean
+       *     constant?: boolean
        *     createTime?: string
-       *     deleteTime?: string
        *     fixedIndexInTab?: number
        *     // 是否隐藏菜单
-       *     // [required]
-       *     hideInMenu: boolean
+       *     hideInMenu?: boolean
        *     href?: string
        *     // [required]
        *     i18nKey: string
@@ -1145,18 +1130,15 @@ declare global {
        *     // [required]
        *     iconType: string
        *     id?: number
-       *     // [required]
-       *     keepAlive: boolean
+       *     keepAlive?: boolean
        *     localIcon?: string
        *     // [required]
        *     menuName: string
        *     // [required]
        *     menuType: string
        *     // 是否支持多标签
-       *     // [required]
-       *     multiTab: boolean
-       *     // [required]
-       *     order: number
+       *     multiTab?: boolean
+       *     order?: number
        *     // 父菜单ID
        *     parentId?: number
        *     query?: Array<{
@@ -1206,19 +1188,18 @@ declare global {
        *   activeMenu?: string
        *   buttons?: Array<{
        *     code?: string
+       *     createTime?: string
        *     desc?: string
        *     id?: number
+       *     updateTime?: string
        *   }>
        *   children?: Array<System_menu>
        *   component?: string
-       *   // [required]
-       *   constant: boolean
+       *   constant?: boolean
        *   createTime?: string
-       *   deleteTime?: string
        *   fixedIndexInTab?: number
        *   // 是否隐藏菜单
-       *   // [required]
-       *   hideInMenu: boolean
+       *   hideInMenu?: boolean
        *   href?: string
        *   // [required]
        *   i18nKey: string
@@ -1226,18 +1207,15 @@ declare global {
        *   // [required]
        *   iconType: string
        *   id?: number
-       *   // [required]
-       *   keepAlive: boolean
+       *   keepAlive?: boolean
        *   localIcon?: string
        *   // [required]
        *   menuName: string
        *   // [required]
        *   menuType: string
        *   // 是否支持多标签
-       *   // [required]
-       *   multiTab: boolean
-       *   // [required]
-       *   order: number
+       *   multiTab?: boolean
+       *   order?: number
        *   // 父菜单ID
        *   parentId?: number
        *   query?: Array<{
@@ -1268,19 +1246,18 @@ declare global {
        *     activeMenu?: string
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     children?: Array<System_menu>
        *     component?: string
-       *     // [required]
-       *     constant: boolean
+       *     constant?: boolean
        *     createTime?: string
-       *     deleteTime?: string
        *     fixedIndexInTab?: number
        *     // 是否隐藏菜单
-       *     // [required]
-       *     hideInMenu: boolean
+       *     hideInMenu?: boolean
        *     href?: string
        *     // [required]
        *     i18nKey: string
@@ -1288,18 +1265,15 @@ declare global {
        *     // [required]
        *     iconType: string
        *     id?: number
-       *     // [required]
-       *     keepAlive: boolean
+       *     keepAlive?: boolean
        *     localIcon?: string
        *     // [required]
        *     menuName: string
        *     // [required]
        *     menuType: string
        *     // 是否支持多标签
-       *     // [required]
-       *     multiTab: boolean
-       *     // [required]
-       *     order: number
+       *     multiTab?: boolean
+       *     order?: number
        *     // 父菜单ID
        *     parentId?: number
        *     query?: Array<{
@@ -1347,19 +1321,18 @@ declare global {
        *     activeMenu?: string
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     children?: Array<System_menu>
        *     component?: string
-       *     // [required]
-       *     constant: boolean
+       *     constant?: boolean
        *     createTime?: string
-       *     deleteTime?: string
        *     fixedIndexInTab?: number
        *     // 是否隐藏菜单
-       *     // [required]
-       *     hideInMenu: boolean
+       *     hideInMenu?: boolean
        *     href?: string
        *     // [required]
        *     i18nKey: string
@@ -1367,18 +1340,15 @@ declare global {
        *     // [required]
        *     iconType: string
        *     id?: number
-       *     // [required]
-       *     keepAlive: boolean
+       *     keepAlive?: boolean
        *     localIcon?: string
        *     // [required]
        *     menuName: string
        *     // [required]
        *     menuType: string
        *     // 是否支持多标签
-       *     // [required]
-       *     multiTab: boolean
-       *     // [required]
-       *     order: number
+       *     multiTab?: boolean
+       *     order?: number
        *     // 父菜单ID
        *     parentId?: number
        *     query?: Array<{
@@ -1436,30 +1406,30 @@ declare global {
        *     records: Array<{
        *       buttons?: Array<{
        *         code?: string
+       *         createTime?: string
        *         desc?: string
        *         id?: number
+       *         updateTime?: string
        *       }>
        *       createTime?: string
-       *       deleteTime?: string
        *       id?: number
        *       menu?: Array<{
        *         // 激活的菜单名
        *         activeMenu?: string
        *         buttons?: Array<{
        *           code?: string
+       *           createTime?: string
        *           desc?: string
        *           id?: number
+       *           updateTime?: string
        *         }>
        *         children?: Array<System_menu>
        *         component?: string
-       *         // [required]
-       *         constant: boolean
+       *         constant?: boolean
        *         createTime?: string
-       *         deleteTime?: string
        *         fixedIndexInTab?: number
        *         // 是否隐藏菜单
-       *         // [required]
-       *         hideInMenu: boolean
+       *         hideInMenu?: boolean
        *         href?: string
        *         // [required]
        *         i18nKey: string
@@ -1467,18 +1437,15 @@ declare global {
        *         // [required]
        *         iconType: string
        *         id?: number
-       *         // [required]
-       *         keepAlive: boolean
+       *         keepAlive?: boolean
        *         localIcon?: string
        *         // [required]
        *         menuName: string
        *         // [required]
        *         menuType: string
        *         // 是否支持多标签
-       *         // [required]
-       *         multiTab: boolean
-       *         // [required]
-       *         order: number
+       *         multiTab?: boolean
+       *         order?: number
        *         // 父菜单ID
        *         parentId?: number
        *         query?: Array<{
@@ -1538,30 +1505,30 @@ declare global {
        * type RequestBody = {
        *   buttons?: Array<{
        *     code?: string
+       *     createTime?: string
        *     desc?: string
        *     id?: number
+       *     updateTime?: string
        *   }>
        *   createTime?: string
-       *   deleteTime?: string
        *   id?: number
        *   menu?: Array<{
        *     // 激活的菜单名
        *     activeMenu?: string
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     children?: Array<System_menu>
        *     component?: string
-       *     // [required]
-       *     constant: boolean
+       *     constant?: boolean
        *     createTime?: string
-       *     deleteTime?: string
        *     fixedIndexInTab?: number
        *     // 是否隐藏菜单
-       *     // [required]
-       *     hideInMenu: boolean
+       *     hideInMenu?: boolean
        *     href?: string
        *     // [required]
        *     i18nKey: string
@@ -1569,18 +1536,15 @@ declare global {
        *     // [required]
        *     iconType: string
        *     id?: number
-       *     // [required]
-       *     keepAlive: boolean
+       *     keepAlive?: boolean
        *     localIcon?: string
        *     // [required]
        *     menuName: string
        *     // [required]
        *     menuType: string
        *     // 是否支持多标签
-       *     // [required]
-       *     multiTab: boolean
-       *     // [required]
-       *     order: number
+       *     multiTab?: boolean
+       *     order?: number
        *     // 父菜单ID
        *     parentId?: number
        *     query?: Array<{
@@ -1613,30 +1577,30 @@ declare global {
        *   data: {
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     createTime?: string
-       *     deleteTime?: string
        *     id?: number
        *     menu?: Array<{
        *       // 激活的菜单名
        *       activeMenu?: string
        *       buttons?: Array<{
        *         code?: string
+       *         createTime?: string
        *         desc?: string
        *         id?: number
+       *         updateTime?: string
        *       }>
        *       children?: Array<System_menu>
        *       component?: string
-       *       // [required]
-       *       constant: boolean
+       *       constant?: boolean
        *       createTime?: string
-       *       deleteTime?: string
        *       fixedIndexInTab?: number
        *       // 是否隐藏菜单
-       *       // [required]
-       *       hideInMenu: boolean
+       *       hideInMenu?: boolean
        *       href?: string
        *       // [required]
        *       i18nKey: string
@@ -1644,18 +1608,15 @@ declare global {
        *       // [required]
        *       iconType: string
        *       id?: number
-       *       // [required]
-       *       keepAlive: boolean
+       *       keepAlive?: boolean
        *       localIcon?: string
        *       // [required]
        *       menuName: string
        *       // [required]
        *       menuType: string
        *       // 是否支持多标签
-       *       // [required]
-       *       multiTab: boolean
-       *       // [required]
-       *       order: number
+       *       multiTab?: boolean
+       *       order?: number
        *       // 父菜单ID
        *       parentId?: number
        *       query?: Array<{
@@ -1705,30 +1666,30 @@ declare global {
        *   data: Array<{
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     createTime?: string
-       *     deleteTime?: string
        *     id?: number
        *     menu?: Array<{
        *       // 激活的菜单名
        *       activeMenu?: string
        *       buttons?: Array<{
        *         code?: string
+       *         createTime?: string
        *         desc?: string
        *         id?: number
+       *         updateTime?: string
        *       }>
        *       children?: Array<System_menu>
        *       component?: string
-       *       // [required]
-       *       constant: boolean
+       *       constant?: boolean
        *       createTime?: string
-       *       deleteTime?: string
        *       fixedIndexInTab?: number
        *       // 是否隐藏菜单
-       *       // [required]
-       *       hideInMenu: boolean
+       *       hideInMenu?: boolean
        *       href?: string
        *       // [required]
        *       i18nKey: string
@@ -1736,18 +1697,15 @@ declare global {
        *       // [required]
        *       iconType: string
        *       id?: number
-       *       // [required]
-       *       keepAlive: boolean
+       *       keepAlive?: boolean
        *       localIcon?: string
        *       // [required]
        *       menuName: string
        *       // [required]
        *       menuType: string
        *       // 是否支持多标签
-       *       // [required]
-       *       multiTab: boolean
-       *       // [required]
-       *       order: number
+       *       multiTab?: boolean
+       *       order?: number
        *       // 父菜单ID
        *       parentId?: number
        *       query?: Array<{
@@ -1949,30 +1907,30 @@ declare global {
        * type RequestBody = {
        *   buttons?: Array<{
        *     code?: string
+       *     createTime?: string
        *     desc?: string
        *     id?: number
+       *     updateTime?: string
        *   }>
        *   createTime?: string
-       *   deleteTime?: string
        *   id?: number
        *   menu?: Array<{
        *     // 激活的菜单名
        *     activeMenu?: string
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     children?: Array<System_menu>
        *     component?: string
-       *     // [required]
-       *     constant: boolean
+       *     constant?: boolean
        *     createTime?: string
-       *     deleteTime?: string
        *     fixedIndexInTab?: number
        *     // 是否隐藏菜单
-       *     // [required]
-       *     hideInMenu: boolean
+       *     hideInMenu?: boolean
        *     href?: string
        *     // [required]
        *     i18nKey: string
@@ -1980,18 +1938,15 @@ declare global {
        *     // [required]
        *     iconType: string
        *     id?: number
-       *     // [required]
-       *     keepAlive: boolean
+       *     keepAlive?: boolean
        *     localIcon?: string
        *     // [required]
        *     menuName: string
        *     // [required]
        *     menuType: string
        *     // 是否支持多标签
-       *     // [required]
-       *     multiTab: boolean
-       *     // [required]
-       *     order: number
+       *     multiTab?: boolean
+       *     order?: number
        *     // 父菜单ID
        *     parentId?: number
        *     query?: Array<{
@@ -2067,36 +2022,35 @@ declare global {
        *     // [required]
        *     records: Array<{
        *       createTime?: string
-       *       deleteTime?: string
        *       id?: number
        *       password?: string
        *       roles?: Array<{
        *         buttons?: Array<{
        *           code?: string
+       *           createTime?: string
        *           desc?: string
        *           id?: number
+       *           updateTime?: string
        *         }>
        *         createTime?: string
-       *         deleteTime?: string
        *         id?: number
        *         menu?: Array<{
        *           // 激活的菜单名
        *           activeMenu?: string
        *           buttons?: Array<{
        *             code?: string
+       *             createTime?: string
        *             desc?: string
        *             id?: number
+       *             updateTime?: string
        *           }>
        *           children?: Array<System_menu>
        *           component?: string
-       *           // [required]
-       *           constant: boolean
+       *           constant?: boolean
        *           createTime?: string
-       *           deleteTime?: string
        *           fixedIndexInTab?: number
        *           // 是否隐藏菜单
-       *           // [required]
-       *           hideInMenu: boolean
+       *           hideInMenu?: boolean
        *           href?: string
        *           // [required]
        *           i18nKey: string
@@ -2104,18 +2058,15 @@ declare global {
        *           // [required]
        *           iconType: string
        *           id?: number
-       *           // [required]
-       *           keepAlive: boolean
+       *           keepAlive?: boolean
        *           localIcon?: string
        *           // [required]
        *           menuName: string
        *           // [required]
        *           menuType: string
        *           // 是否支持多标签
-       *           // [required]
-       *           multiTab: boolean
-       *           // [required]
-       *           order: number
+       *           multiTab?: boolean
+       *           order?: number
        *           // 父菜单ID
        *           parentId?: number
        *           query?: Array<{
@@ -2177,36 +2128,35 @@ declare global {
        * ```ts
        * type RequestBody = {
        *   createTime?: string
-       *   deleteTime?: string
        *   id?: number
        *   password?: string
        *   roles?: Array<{
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     createTime?: string
-       *     deleteTime?: string
        *     id?: number
        *     menu?: Array<{
        *       // 激活的菜单名
        *       activeMenu?: string
        *       buttons?: Array<{
        *         code?: string
+       *         createTime?: string
        *         desc?: string
        *         id?: number
+       *         updateTime?: string
        *       }>
        *       children?: Array<System_menu>
        *       component?: string
-       *       // [required]
-       *       constant: boolean
+       *       constant?: boolean
        *       createTime?: string
-       *       deleteTime?: string
        *       fixedIndexInTab?: number
        *       // 是否隐藏菜单
-       *       // [required]
-       *       hideInMenu: boolean
+       *       hideInMenu?: boolean
        *       href?: string
        *       // [required]
        *       i18nKey: string
@@ -2214,18 +2164,15 @@ declare global {
        *       // [required]
        *       iconType: string
        *       id?: number
-       *       // [required]
-       *       keepAlive: boolean
+       *       keepAlive?: boolean
        *       localIcon?: string
        *       // [required]
        *       menuName: string
        *       // [required]
        *       menuType: string
        *       // 是否支持多标签
-       *       // [required]
-       *       multiTab: boolean
-       *       // [required]
-       *       order: number
+       *       multiTab?: boolean
+       *       order?: number
        *       // 父菜单ID
        *       parentId?: number
        *       query?: Array<{
@@ -2260,36 +2207,35 @@ declare global {
        *   // [required]
        *   data: {
        *     createTime?: string
-       *     deleteTime?: string
        *     id?: number
        *     password?: string
        *     roles?: Array<{
        *       buttons?: Array<{
        *         code?: string
+       *         createTime?: string
        *         desc?: string
        *         id?: number
+       *         updateTime?: string
        *       }>
        *       createTime?: string
-       *       deleteTime?: string
        *       id?: number
        *       menu?: Array<{
        *         // 激活的菜单名
        *         activeMenu?: string
        *         buttons?: Array<{
        *           code?: string
+       *           createTime?: string
        *           desc?: string
        *           id?: number
+       *           updateTime?: string
        *         }>
        *         children?: Array<System_menu>
        *         component?: string
-       *         // [required]
-       *         constant: boolean
+       *         constant?: boolean
        *         createTime?: string
-       *         deleteTime?: string
        *         fixedIndexInTab?: number
        *         // 是否隐藏菜单
-       *         // [required]
-       *         hideInMenu: boolean
+       *         hideInMenu?: boolean
        *         href?: string
        *         // [required]
        *         i18nKey: string
@@ -2297,18 +2243,15 @@ declare global {
        *         // [required]
        *         iconType: string
        *         id?: number
-       *         // [required]
-       *         keepAlive: boolean
+       *         keepAlive?: boolean
        *         localIcon?: string
        *         // [required]
        *         menuName: string
        *         // [required]
        *         menuType: string
        *         // 是否支持多标签
-       *         // [required]
-       *         multiTab: boolean
-       *         // [required]
-       *         order: number
+       *         multiTab?: boolean
+       *         order?: number
        *         // 父菜单ID
        *         parentId?: number
        *         query?: Array<{
@@ -2438,36 +2381,35 @@ declare global {
        * ```ts
        * type RequestBody = {
        *   createTime?: string
-       *   deleteTime?: string
        *   id?: number
        *   password?: string
        *   roles?: Array<{
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     createTime?: string
-       *     deleteTime?: string
        *     id?: number
        *     menu?: Array<{
        *       // 激活的菜单名
        *       activeMenu?: string
        *       buttons?: Array<{
        *         code?: string
+       *         createTime?: string
        *         desc?: string
        *         id?: number
+       *         updateTime?: string
        *       }>
        *       children?: Array<System_menu>
        *       component?: string
-       *       // [required]
-       *       constant: boolean
+       *       constant?: boolean
        *       createTime?: string
-       *       deleteTime?: string
        *       fixedIndexInTab?: number
        *       // 是否隐藏菜单
-       *       // [required]
-       *       hideInMenu: boolean
+       *       hideInMenu?: boolean
        *       href?: string
        *       // [required]
        *       i18nKey: string
@@ -2475,18 +2417,15 @@ declare global {
        *       // [required]
        *       iconType: string
        *       id?: number
-       *       // [required]
-       *       keepAlive: boolean
+       *       keepAlive?: boolean
        *       localIcon?: string
        *       // [required]
        *       menuName: string
        *       // [required]
        *       menuType: string
        *       // 是否支持多标签
-       *       // [required]
-       *       multiTab: boolean
-       *       // [required]
-       *       order: number
+       *       multiTab?: boolean
+       *       order?: number
        *       // 父菜单ID
        *       parentId?: number
        *       query?: Array<{
@@ -2602,30 +2541,30 @@ declare global {
        *   data: Array<{
        *     buttons?: Array<{
        *       code?: string
+       *       createTime?: string
        *       desc?: string
        *       id?: number
+       *       updateTime?: string
        *     }>
        *     createTime?: string
-       *     deleteTime?: string
        *     id?: number
        *     menu?: Array<{
        *       // 激活的菜单名
        *       activeMenu?: string
        *       buttons?: Array<{
        *         code?: string
+       *         createTime?: string
        *         desc?: string
        *         id?: number
+       *         updateTime?: string
        *       }>
        *       children?: Array<System_menu>
        *       component?: string
-       *       // [required]
-       *       constant: boolean
+       *       constant?: boolean
        *       createTime?: string
-       *       deleteTime?: string
        *       fixedIndexInTab?: number
        *       // 是否隐藏菜单
-       *       // [required]
-       *       hideInMenu: boolean
+       *       hideInMenu?: boolean
        *       href?: string
        *       // [required]
        *       i18nKey: string
@@ -2633,18 +2572,15 @@ declare global {
        *       // [required]
        *       iconType: string
        *       id?: number
-       *       // [required]
-       *       keepAlive: boolean
+       *       keepAlive?: boolean
        *       localIcon?: string
        *       // [required]
        *       menuName: string
        *       // [required]
        *       menuType: string
        *       // 是否支持多标签
-       *       // [required]
-       *       multiTab: boolean
-       *       // [required]
-       *       order: number
+       *       multiTab?: boolean
+       *       order?: number
        *       // 父菜单ID
        *       parentId?: number
        *       query?: Array<{
