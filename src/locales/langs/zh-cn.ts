@@ -4,7 +4,7 @@ const local: App.I18n.Schema = {
     updateTitle: '系统版本更新通知',
     updateContent: '检测到系统有新版本发布，是否立即刷新页面？',
     updateConfirm: '立即刷新',
-    updateCancel: '稍后再说'
+    updateCancel: '稍后再说',
   },
   common: {
     action: '操作',
@@ -46,8 +46,8 @@ const local: App.I18n.Schema = {
     userCenter: '个人中心',
     yesOrNo: {
       yes: '是',
-      no: '否'
-    }
+      no: '否',
+    },
   },
   request: {
     logout: '请求失败后登出用户',
@@ -55,24 +55,24 @@ const local: App.I18n.Schema = {
     logoutWithModal: '请求失败后弹出模态框再登出用户',
     logoutWithModalMsg: '用户状态失效，请重新登录',
     refreshToken: '请求的token已过期，刷新token',
-    tokenExpired: 'token已过期'
+    tokenExpired: 'token已过期',
   },
   theme: {
     themeSchema: {
       title: '主题模式',
       light: '亮色模式',
       dark: '暗黑模式',
-      auto: '跟随系统'
+      auto: '跟随系统',
     },
     grayscale: '灰色模式',
     colourWeakness: '色弱模式',
     layoutMode: {
-      title: '布局模式',
-      vertical: '左侧菜单模式',
+      'title': '布局模式',
+      'vertical': '左侧菜单模式',
       'vertical-mix': '左侧菜单混合模式',
-      horizontal: '顶部菜单模式',
+      'horizontal': '顶部菜单模式',
       'horizontal-mix': '顶部菜单混合模式',
-      reverseHorizontalMix: '一级菜单与子级菜单位置反转'
+      'reverseHorizontalMix': '一级菜单与子级菜单位置反转',
     },
     recommendColor: '应用推荐算法的颜色',
     recommendColorDesc: '推荐颜色的算法参照',
@@ -83,36 +83,36 @@ const local: App.I18n.Schema = {
       success: '成功色',
       warning: '警告色',
       error: '错误色',
-      followPrimary: '跟随主色'
+      followPrimary: '跟随主色',
     },
     scrollMode: {
       title: '滚动模式',
       wrapper: '外层滚动',
-      content: '主体滚动'
+      content: '主体滚动',
     },
     page: {
       animate: '页面切换动画',
       mode: {
-        title: '页面切换动画类型',
+        'title': '页面切换动画类型',
         'fade-slide': '滑动',
-        fade: '淡入淡出',
+        'fade': '淡入淡出',
         'fade-bottom': '底部消退',
         'fade-scale': '缩放消退',
         'zoom-fade': '渐变',
         'zoom-out': '闪现',
-        none: '无'
-      }
+        'none': '无',
+      },
     },
     fixedHeaderAndTab: '固定头部和标签栏',
     header: {
       height: '头部高度',
       breadcrumb: {
         visible: '显示面包屑',
-        showIcon: '显示面包屑图标'
+        showIcon: '显示面包屑图标',
       },
       multilingual: {
-        visible: '显示多语言按钮'
-      }
+        visible: '显示多语言按钮',
+      },
     },
     tab: {
       visible: '显示标签栏',
@@ -121,8 +121,8 @@ const local: App.I18n.Schema = {
       mode: {
         title: '标签栏风格',
         chrome: '谷歌风格',
-        button: '按钮风格'
-      }
+        button: '按钮风格',
+      },
     },
     sider: {
       inverted: '深色侧边栏',
@@ -130,57 +130,57 @@ const local: App.I18n.Schema = {
       collapsedWidth: '侧边栏折叠宽度',
       mixWidth: '混合布局侧边栏宽度',
       mixCollapsedWidth: '混合布局侧边栏折叠宽度',
-      mixChildMenuWidth: '混合布局子菜单宽度'
+      mixChildMenuWidth: '混合布局子菜单宽度',
     },
     footer: {
       visible: '显示底部',
       fixed: '固定底部',
       height: '底部高度',
-      right: '底部局右'
+      right: '底部局右',
     },
     watermark: {
       visible: '显示全屏水印',
-      text: '水印文本'
+      text: '水印文本',
     },
     themeDrawerTitle: '主题配置',
     pageFunTitle: '页面功能',
     resetCacheStrategy: {
       title: '重置缓存策略',
       close: '关闭页面',
-      refresh: '刷新页面'
+      refresh: '刷新页面',
     },
     configOperation: {
       copyConfig: '复制配置',
       copySuccessMsg: '复制成功，请替换 src/theme/settings.ts 中的变量 themeSettings',
       resetConfig: '重置配置',
-      resetSuccessMsg: '重置成功'
-    }
+      resetSuccessMsg: '重置成功',
+    },
   },
   route: {
-    login: '登录',
-    403: '无权限',
-    404: '页面不存在',
-    500: '服务器错误',
+    'login': '登录',
+    '403': '无权限',
+    '404': '页面不存在',
+    '500': '服务器错误',
     'iframe-page': '外链页面',
-    home: '首页',
-    document: '文档',
-    document_project: '项目文档',
+    'home': '首页',
+    'document': '文档',
+    'document_project': '项目文档',
     'document_project-link': '项目文档(外链)',
-    document_vue: 'Vue文档',
-    document_vite: 'Vite文档',
-    document_unocss: 'UnoCSS文档',
-    document_naive: 'Naive UI文档',
-    document_antd: 'Ant Design Vue文档',
-    document_alova: 'Alova文档',
-    manage: '系统管理',
-    manage_user: '用户管理',
+    'document_vue': 'Vue文档',
+    'document_vite': 'Vite文档',
+    'document_unocss': 'UnoCSS文档',
+    'document_naive': 'Naive UI文档',
+    'document_antd': 'Ant Design Vue文档',
+    'document_alova': 'Alova文档',
+    'manage': '系统管理',
+    'manage_user': '用户管理',
     'manage_user-detail': '用户详情',
-    manage_role: '角色管理',
-    manage_menu: '菜单管理',
-    exception: '异常页',
-    exception_403: '403',
-    exception_404: '404',
-    exception_500: '500'
+    'manage_role': '角色管理',
+    'manage_menu': '菜单管理',
+    'exception': '异常页',
+    'exception_403': '403',
+    'exception_404': '404',
+    'exception_500': '500',
   },
   page: {
     login: {
@@ -196,7 +196,7 @@ const local: App.I18n.Schema = {
         back: '返回',
         validateSuccess: '验证成功',
         loginSuccess: '登录成功',
-        welcomeBack: '欢迎回来，{userName} ！'
+        welcomeBack: '欢迎回来，{userName} ！',
       },
       pwdLogin: {
         title: '密码登录',
@@ -207,27 +207,27 @@ const local: App.I18n.Schema = {
         otherLoginMode: '其他登录方式',
         superAdmin: '超级管理员',
         admin: '管理员',
-        user: '普通用户'
+        user: '普通用户',
       },
       codeLogin: {
         title: '验证码登录',
         getCode: '获取验证码',
         reGetCode: '{time}秒后重新获取',
         sendCodeSuccess: '验证码发送成功',
-        imageCodePlaceholder: '请输入图片验证码'
+        imageCodePlaceholder: '请输入图片验证码',
       },
       register: {
         title: '注册账号',
         agreement: '我已经仔细阅读并接受',
         protocol: '《用户协议》',
-        policy: '《隐私权政策》'
+        policy: '《隐私权政策》',
       },
       resetPwd: {
-        title: '重置密码'
+        title: '重置密码',
       },
       bindWeChat: {
-        title: '绑定微信'
-      }
+        title: '绑定微信',
+      },
     },
     about: {
       title: '关于',
@@ -237,10 +237,10 @@ const local: App.I18n.Schema = {
         version: '版本',
         latestBuildTime: '最新构建时间',
         githubLink: 'Github 地址',
-        previewLink: '预览地址'
+        previewLink: '预览地址',
       },
       prdDep: '生产依赖',
-      devDep: '开发依赖'
+      devDep: '开发依赖',
     },
     home: {
       branchDesc:
@@ -267,9 +267,9 @@ const local: App.I18n.Schema = {
         desc2: 'Yanbowe 向 soybean-admin 提交了一个bug，多标签栏不会自适应。',
         desc3: 'Soybean 准备为 soybean-admin 的发布做充分的准备工作!',
         desc4: 'Soybean 正在忙于为soybean-admin写项目说明文档！',
-        desc5: 'Soybean 刚才把工作台页面随便写了一些，凑合能看了！'
+        desc5: 'Soybean 刚才把工作台页面随便写了一些，凑合能看了！',
       },
-      creativity: '创意'
+      creativity: '创意',
     },
     function: {
       tab: {
@@ -282,33 +282,33 @@ const local: App.I18n.Schema = {
           closeAboutTab: '关闭"关于"标签页',
           addMultiTab: '添加多标签页',
           addMultiTabDesc1: '跳转到多标签页页面',
-          addMultiTabDesc2: '跳转到多标签页页面(带有查询参数)'
+          addMultiTabDesc2: '跳转到多标签页页面(带有查询参数)',
         },
         tabTitle: {
           title: '标签页标题',
           changeTitle: '修改标题',
           change: '修改',
           resetTitle: '重置标题',
-          reset: '重置'
-        }
+          reset: '重置',
+        },
       },
       multiTab: {
         routeParam: '路由参数',
-        backTab: '返回 function_tab'
+        backTab: '返回 function_tab',
       },
       toggleAuth: {
         toggleAccount: '切换账号',
         authHook: '权限钩子函数 `hasAuth`',
         superAdminVisible: '超级管理员可见',
         adminVisible: '管理员可见',
-        adminOrUserVisible: '管理员和用户可见'
+        adminOrUserVisible: '管理员和用户可见',
       },
       request: {
         repeatedErrorOccurOnce: '重复请求错误只出现一次',
         repeatedError: '重复请求错误',
         repeatedErrorMsg1: '自定义请求错误 1',
-        repeatedErrorMsg2: '自定义请求错误 2'
-      }
+        repeatedErrorMsg2: '自定义请求错误 2',
+      },
     },
     alova: {
       scenes: {
@@ -321,15 +321,15 @@ const local: App.I18n.Schema = {
         startRequest: '开始请求',
         stopRequest: '停止请求',
         requestCrossComponent: '跨组件触发请求',
-        triggerAllRequest: '手动触发所有自动请求'
-      }
+        triggerAllRequest: '手动触发所有自动请求',
+      },
     },
     manage: {
       common: {
         status: {
           enable: '启用',
-          disable: '禁用'
-        }
+          disable: '禁用',
+        },
       },
       role: {
         title: '角色列表',
@@ -343,10 +343,10 @@ const local: App.I18n.Schema = {
           roleName: '请输入角色名称',
           roleCode: '请输入角色编码',
           roleStatus: '请选择角色状态',
-          roleDesc: '请输入角色描述'
+          roleDesc: '请输入角色描述',
         },
         addRole: '新增角色',
-        editRole: '编辑角色'
+        editRole: '编辑角色',
       },
       user: {
         title: '用户列表',
@@ -366,14 +366,14 @@ const local: App.I18n.Schema = {
           userPhone: '请输入手机号',
           userEmail: '请输入邮箱',
           userStatus: '请选择用户状态',
-          userRole: '请选择用户角色'
+          userRole: '请选择用户角色',
         },
         addUser: '新增用户',
         editUser: '编辑用户',
         gender: {
           male: '男',
-          female: '女'
-        }
+          female: '女',
+        },
       },
       menu: {
         home: '首页',
@@ -429,55 +429,55 @@ const local: App.I18n.Schema = {
           button: '请选择是否按钮',
           buttonCode: '请输入按钮编码',
           buttonDesc: '请输入按钮描述',
-          menuStatus: '请选择菜单状态'
+          menuStatus: '请选择菜单状态',
         },
         addMenu: '新增菜单',
         editMenu: '编辑菜单',
         addChildMenu: '新增子菜单',
         type: {
           directory: '目录',
-          menu: '菜单'
+          menu: '菜单',
         },
         iconType: {
           iconify: 'iconify图标',
-          local: '本地图标'
-        }
-      }
-    }
+          local: '本地图标',
+        },
+      },
+    },
   },
   form: {
     required: '不能为空',
     userName: {
       required: '请输入用户名',
-      invalid: '用户名格式不正确'
+      invalid: '用户名格式不正确',
     },
     phone: {
       required: '请输入手机号',
-      invalid: '手机号格式不正确'
+      invalid: '手机号格式不正确',
     },
     pwd: {
       required: '请输入密码',
-      invalid: '密码格式不正确，6-18位字符，包含字母、数字、下划线'
+      invalid: '密码格式不正确，6-18位字符，包含字母、数字、下划线',
     },
     confirmPwd: {
       required: '请输入确认密码',
-      invalid: '两次输入密码不一致'
+      invalid: '两次输入密码不一致',
     },
     code: {
       required: '请输入验证码',
-      invalid: '验证码格式不正确'
+      invalid: '验证码格式不正确',
     },
     email: {
       required: '请输入邮箱',
-      invalid: '邮箱格式不正确'
-    }
+      invalid: '邮箱格式不正确',
+    },
   },
   dropdown: {
     closeCurrent: '关闭',
     closeOther: '关闭其它',
     closeLeft: '关闭左侧',
     closeRight: '关闭右侧',
-    closeAll: '关闭所有'
+    closeAll: '关闭所有',
   },
   icon: {
     themeConfig: '主题配置',
@@ -489,11 +489,11 @@ const local: App.I18n.Schema = {
     collapse: '折叠菜单',
     expand: '展开菜单',
     pin: '固定',
-    unpin: '取消固定'
+    unpin: '取消固定',
   },
   datatable: {
-    itemCount: '共 {total} 条'
-  }
-};
+    itemCount: '共 {total} 条',
+  },
+}
 
-export default local;
+export default local

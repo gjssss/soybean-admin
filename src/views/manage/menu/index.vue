@@ -1,23 +1,24 @@
 <script setup lang="tsx">
-import { computed, ref } from 'vue';
-import type { Ref } from 'vue';
-import { NButton, NPopconfirm, NTag } from 'naive-ui';
-import { useBoolean } from '@sa/hooks';
-import { useAppStore } from '@/store/modules/app';
-import { useTable, useTableOperate } from '@/hooks/common/table';
-import { $t } from '@/locales';
-import { yesOrNoRecord } from '@/constants/common';
-import { menuTypeRecord } from '@/constants/business';
-import SvgIcon from '@/components/custom/svg-icon.vue';
-import type { System_menu } from '@/api/globals';
-import { wrapAlova } from '@/service/alova/wrap';
-import MenuOperateModal, { type OperateType } from './modules/menu-operate-modal.vue';
+import type { System_menu } from '@/api/globals'
+import type { Ref } from 'vue'
+import type { OperateType } from './modules/menu-operate-modal.vue'
+import SvgIcon from '@/components/custom/svg-icon.vue'
+import { menuTypeRecord } from '@/constants/business'
+import { yesOrNoRecord } from '@/constants/common'
+import { useTable, useTableOperate } from '@/hooks/common/table'
+import { $t } from '@/locales'
+import { wrapAlova } from '@/service/alova/wrap'
+import { useAppStore } from '@/store/modules/app'
+import { useBoolean } from '@sa/hooks'
+import { NButton, NPopconfirm, NTag } from 'naive-ui'
+import { computed, ref } from 'vue'
+import MenuOperateModal from './modules/menu-operate-modal.vue'
 
-const appStore = useAppStore();
+const appStore = useAppStore()
 
-const { bool: visible, setTrue: openModal } = useBoolean();
+const { bool: visible, setTrue: openModal } = useBoolean()
 
-const wrapperRef = ref<HTMLElement | null>(null);
+const wrapperRef = ref<HTMLElement | null>(null)
 
 const { columns, columnChecks, data, loading, pagination, getData, getDataByPage } = useTable({
   apiFn: async () => {
@@ -27,110 +28,110 @@ const { columns, columnChecks, data, loading, pagination, getData, getDataByPage
         records: (await wrapAlova(Apis.general.get_menus())).data!,
         current: 1,
         size: 10,
-        total: 10
+        total: 10,
       },
       error: null,
-      response: {} as any
-    };
+      response: {} as any,
+    }
   },
   columns: () => [
     {
       type: 'selection',
       align: 'center',
-      width: 48
+      width: 48,
     },
     {
       key: 'id',
       title: $t('page.manage.menu.id'),
-      align: 'center'
+      align: 'center',
     },
     {
       key: 'menuType',
       title: $t('page.manage.menu.menuType'),
       align: 'center',
       width: 80,
-      render: row => {
+      render: (row) => {
         const tagMap: Record<string, NaiveUI.ThemeColor> = {
           1: 'default',
-          2: 'primary'
-        };
+          2: 'primary',
+        }
 
-        const label = $t(menuTypeRecord[row.menuType]);
+        const label = $t(menuTypeRecord[row.menuType])
 
-        return <NTag type={tagMap[row.menuType]}>{label}</NTag>;
-      }
+        return <NTag type={tagMap[row.menuType]}>{label}</NTag>
+      },
     },
     {
       key: 'menuName',
       title: $t('page.manage.menu.menuName'),
       align: 'center',
       minWidth: 120,
-      render: row => {
-        const { i18nKey, menuName } = row;
+      render: (row) => {
+        const { i18nKey, menuName } = row
 
-        const label = i18nKey ? $t(i18nKey as any) : menuName;
+        const label = i18nKey ? $t(i18nKey as any) : menuName
 
-        return <span>{label}</span>;
-      }
+        return <span>{label}</span>
+      },
     },
     {
       key: 'icon',
       title: $t('page.manage.menu.icon'),
       align: 'center',
       width: 60,
-      render: row => {
-        const icon = row.iconType === '1' ? row.icon : undefined;
+      render: (row) => {
+        const icon = row.iconType === '1' ? row.icon : undefined
 
-        const localIcon = row.iconType === '2' ? row.icon : undefined;
+        const localIcon = row.iconType === '2' ? row.icon : undefined
 
         return (
           <div class="flex-center">
             <SvgIcon icon={icon} localIcon={localIcon} class="text-icon" />
           </div>
-        );
-      }
+        )
+      },
     },
     {
       key: 'routeName',
       title: $t('page.manage.menu.routeName'),
       align: 'center',
-      minWidth: 120
+      minWidth: 120,
     },
     {
       key: 'routePath',
       title: $t('page.manage.menu.routePath'),
       align: 'center',
-      minWidth: 120
+      minWidth: 120,
     },
     {
       key: 'hideInMenu',
       title: $t('page.manage.menu.hideInMenu'),
       align: 'center',
       width: 80,
-      render: row => {
-        const hide: CommonType.YesOrNo = row.hideInMenu ? 'Y' : 'N';
+      render: (row) => {
+        const hide: CommonType.YesOrNo = row.hideInMenu ? 'Y' : 'N'
 
         const tagMap: Record<CommonType.YesOrNo, NaiveUI.ThemeColor> = {
           Y: 'error',
-          N: 'default'
-        };
+          N: 'default',
+        }
 
-        const label = $t(yesOrNoRecord[hide]);
+        const label = $t(yesOrNoRecord[hide])
 
-        return <NTag type={tagMap[hide]}>{label}</NTag>;
-      }
+        return <NTag type={tagMap[hide]}>{label}</NTag>
+      },
     },
     {
       key: 'parentId',
       title: $t('page.manage.menu.parentId'),
       width: 90,
-      align: 'center'
+      align: 'center',
     },
     {
       key: 'order',
       title: $t('page.manage.menu.order'),
       align: 'center',
-      width: 60
+      width: 60,
     },
     {
       key: 'operate',
@@ -154,73 +155,71 @@ const { columns, columnChecks, data, loading, pagination, getData, getDataByPage
                 <NButton type="error" ghost size="small">
                   {$t('common.delete')}
                 </NButton>
-              )
+              ),
             }}
           </NPopconfirm>
         </div>
-      )
-    }
-  ]
-});
-const { checkedRowKeys, onBatchDeleted, onDeleted } = useTableOperate(data, getData);
+      ),
+    },
+  ],
+})
+const { checkedRowKeys, onBatchDeleted, onDeleted } = useTableOperate(data, getData)
 
 const menuNameList = computed(() => {
-  const nameList: string[] = [];
+  const nameList: string[] = []
   function mapFunc(item: System_menu) {
-    nameList.push(item.routeName);
+    nameList.push(item.routeName)
     if (item.children) {
-      item.children.forEach(mapFunc);
+      item.children.forEach(mapFunc)
     }
   }
-  data.value.forEach(mapFunc);
-  return nameList;
-});
+  data.value.forEach(mapFunc)
+  return nameList
+})
 
-const operateType = ref<OperateType>('add');
+const operateType = ref<OperateType>('add')
 
 function handleAdd() {
-  operateType.value = 'add';
-  openModal();
+  operateType.value = 'add'
+  openModal()
 }
 
 async function handleBatchDelete() {
   // request
-  console.log(checkedRowKeys.value);
   await Apis.general.post_menus_batchdelete({
     data: {
-      ids: checkedRowKeys.value.map(i => Number.parseInt(i, 10))
-    }
-  });
-  onBatchDeleted();
+      ids: checkedRowKeys.value.map(i => Number.parseInt(i, 10)),
+    },
+  })
+  onBatchDeleted()
 }
 
 async function handleDelete(id: number) {
   // request
-  console.log(id);
   await Apis.general.post_menus_delete({
     data: {
-      id
-    }
-  });
-  onDeleted();
+      id,
+    },
+  })
+  onDeleted()
 }
 
 /** the edit menu data or the parent menu data when adding a child menu */
-const editingData: Ref<System_menu | null> = ref(null);
+const editingData: Ref<System_menu | null> = ref(null)
 
 function handleEdit(item: System_menu) {
-  operateType.value = 'edit';
-  editingData.value = { ...item };
+  operateType.value = 'edit'
+  editingData.value = { ...item }
 
-  openModal();
+  openModal()
 }
 
 function handleAddChildMenu(item: System_menu) {
-  operateType.value = 'addChild';
+  operateType.value = 'addChild'
 
-  editingData.value = { ...item };
+  editingData.value = { ...item }
 
-  openModal();
+  openModal()
 }
 </script>
 

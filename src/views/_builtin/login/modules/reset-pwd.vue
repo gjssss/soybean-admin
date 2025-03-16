@@ -1,46 +1,46 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
-import { $t } from '@/locales';
-import { useRouterPush } from '@/hooks/common/router';
-import { useFormRules, useNaiveForm } from '@/hooks/common/form';
+import { useFormRules, useNaiveForm } from '@/hooks/common/form'
+import { useRouterPush } from '@/hooks/common/router'
+import { $t } from '@/locales'
+import { computed, reactive } from 'vue'
 
 defineOptions({
-  name: 'ResetPwd'
-});
+  name: 'ResetPwd',
+})
 
-const { toggleLoginModule } = useRouterPush();
-const { formRef, validate } = useNaiveForm();
+const { toggleLoginModule } = useRouterPush()
+const { formRef, validate } = useNaiveForm()
 
 interface FormModel {
-  phone: string;
-  code: string;
-  password: string;
-  confirmPassword: string;
+  phone: string
+  code: string
+  password: string
+  confirmPassword: string
 }
 
 const model: FormModel = reactive({
   phone: '',
   code: '',
   password: '',
-  confirmPassword: ''
-});
+  confirmPassword: '',
+})
 
-type RuleRecord = Partial<Record<keyof FormModel, App.Global.FormRule[]>>;
+type RuleRecord = Partial<Record<keyof FormModel, App.Global.FormRule[]>>
 
 const rules = computed<RuleRecord>(() => {
-  const { formRules, createConfirmPwdRule } = useFormRules();
+  const { formRules, createConfirmPwdRule } = useFormRules()
 
   return {
     phone: formRules.phone,
     password: formRules.pwd,
-    confirmPassword: createConfirmPwdRule(model.password)
-  };
-});
+    confirmPassword: createConfirmPwdRule(model.password),
+  }
+})
 
 async function handleSubmit() {
-  await validate();
+  await validate()
   // request to reset password
-  window.$message?.success($t('page.login.common.validateSuccess'));
+  window.$message?.success($t('page.login.common.validateSuccess'))
 }
 </script>
 

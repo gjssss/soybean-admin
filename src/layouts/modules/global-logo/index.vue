@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { $t } from '@/locales';
+import { $t } from '@/locales'
 
 defineOptions({
-  name: 'GlobalLogo'
-});
+  name: 'GlobalLogo',
+})
+
+withDefaults(defineProps<Props>(), {
+  showTitle: true,
+})
 
 interface Props {
   /** Whether to show the title */
-  showTitle?: boolean;
+  showTitle?: boolean
 }
-
-withDefaults(defineProps<Props>(), {
-  showTitle: true
-});
 </script>
 
 <template>

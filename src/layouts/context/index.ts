@@ -1,58 +1,59 @@
-import { computed, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
-import { useContext } from '@sa/hooks';
-import { useRouteStore } from '@/store/modules/route';
+import type { MenuDividerOption, MenuGroupOption, MenuOption } from 'naive-ui'
+import { useRouteStore } from '@/store/modules/route'
+import { useContext } from '@sa/hooks'
+import { computed, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
-export const { setupStore: setupMixMenuContext, useStore: useMixMenuContext } = useContext('mix-menu', useMixMenu);
+export const { setupStore: setupMixMenuContext, useStore: useMixMenuContext } = useContext('mix-menu', useMixMenu)
 
 function useMixMenu() {
-  const route = useRoute();
-  const routeStore = useRouteStore();
-  const { selectedKey } = useMenu();
+  const route = useRoute()
+  const routeStore = useRouteStore()
+  const { selectedKey } = useMenu()
 
-  const activeFirstLevelMenuKey = ref('');
+  const activeFirstLevelMenuKey = ref('')
 
   function setActiveFirstLevelMenuKey(key: string) {
-    activeFirstLevelMenuKey.value = key;
+    activeFirstLevelMenuKey.value = key
   }
 
   function getActiveFirstLevelMenuKey() {
-    const [firstLevelRouteName] = selectedKey.value.split('_');
+    const [firstLevelRouteName] = selectedKey.value.split('_')
 
-    setActiveFirstLevelMenuKey(firstLevelRouteName);
+    setActiveFirstLevelMenuKey(firstLevelRouteName)
   }
 
-  const allMenus = computed<App.Global.Menu[]>(() => routeStore.menus);
+  const allMenus = computed<App.Global.Menu[]>(() => routeStore.menus)
 
-  const firstLevelMenus = computed<App.Global.Menu[]>(() =>
-    routeStore.menus.map(menu => {
-      const { children: _, ...rest } = menu;
+  const firstLevelMenus = computed<(MenuOption | MenuDividerOption | MenuGroupOption)[]>(() =>
+    routeStore.menus.map((menu) => {
+      const { children: _, ...rest } = menu
 
-      return rest;
-    })
-  );
+      return rest
+    }),
+  )
 
-  const childLevelMenus = computed<App.Global.Menu[]>(
-    () => routeStore.menus.find(menu => menu.key === activeFirstLevelMenuKey.value)?.children || []
-  );
+  const childLevelMenus = computed<(MenuOption | MenuDividerOption | MenuGroupOption)[]>(
+    () => routeStore.menus.find(menu => menu.key === activeFirstLevelMenuKey.value)?.children || [],
+  )
 
   const isActiveFirstLevelMenuHasChildren = computed(() => {
     if (!activeFirstLevelMenuKey.value) {
-      return false;
+      return false
     }
 
-    const findItem = allMenus.value.find(item => item.key === activeFirstLevelMenuKey.value);
+    const findItem = allMenus.value.find(item => item.key === activeFirstLevelMenuKey.value)
 
-    return Boolean(findItem?.children?.length);
-  });
+    return Boolean(findItem?.children?.length)
+  })
 
   watch(
     () => route.name,
     () => {
-      getActiveFirstLevelMenuKey();
+      getActiveFirstLevelMenuKey()
     },
-    { immediate: true }
-  );
+    { immediate: true },
+  )
 
   return {
     allMenus,
@@ -61,23 +62,23 @@ function useMixMenu() {
     isActiveFirstLevelMenuHasChildren,
     activeFirstLevelMenuKey,
     setActiveFirstLevelMenuKey,
-    getActiveFirstLevelMenuKey
-  };
+    getActiveFirstLevelMenuKey,
+  }
 }
 
 export function useMenu() {
-  const route = useRoute();
+  const route = useRoute()
 
   const selectedKey = computed(() => {
-    const { hideInMenu, activeMenu } = route.meta;
-    const name = route.name as string;
+    const { hideInMenu, activeMenu } = route.meta
+    const name = route.name as string
 
-    const routeName = (hideInMenu ? activeMenu : name) || name;
+    const routeName = (hideInMenu ? activeMenu : name) || name
 
-    return routeName;
-  });
+    return routeName
+  })
 
   return {
-    selectedKey
-  };
+    selectedKey,
+  }
 }

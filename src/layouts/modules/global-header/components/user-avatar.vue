@@ -1,51 +1,51 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import type { VNode } from 'vue';
-import { useAuthStore } from '@/store/modules/auth';
-import { useRouterPush } from '@/hooks/common/router';
-import { useSvgIcon } from '@/hooks/common/icon';
-import { $t } from '@/locales';
+import type { VNode } from 'vue'
+import { useSvgIcon } from '@/hooks/common/icon'
+import { useRouterPush } from '@/hooks/common/router'
+import { $t } from '@/locales'
+import { useAuthStore } from '@/store/modules/auth'
+import { computed } from 'vue'
 
 defineOptions({
-  name: 'UserAvatar'
-});
+  name: 'UserAvatar',
+})
 
-const authStore = useAuthStore();
-const { toLogin } = useRouterPush();
-const { SvgIconVNode } = useSvgIcon();
+const authStore = useAuthStore()
+const { toLogin } = useRouterPush()
+const { SvgIconVNode } = useSvgIcon()
 
 function loginOrRegister() {
-  toLogin();
+  toLogin()
 }
 
-type DropdownKey = 'logout';
+type DropdownKey = 'logout'
 
 type DropdownOption =
   | {
-      key: DropdownKey;
-      label: string;
-      icon?: () => VNode;
-    }
+    key: DropdownKey
+    label: string
+    icon?: () => VNode
+  }
   | {
-      type: 'divider';
-      key: string;
-    };
+    type: 'divider'
+    key: string
+  }
 
 const options = computed(() => {
   const opts: DropdownOption[] = [
     {
       type: 'divider',
-      key: 'divider'
+      key: 'divider',
     },
     {
       label: $t('common.logout'),
       key: 'logout',
-      icon: SvgIconVNode({ icon: 'ph:sign-out', fontSize: 18 })
-    }
-  ];
+      icon: SvgIconVNode({ icon: 'ph:sign-out', fontSize: 18 }),
+    },
+  ]
 
-  return opts;
-});
+  return opts
+})
 
 function logout() {
   window.$dialog?.info({
@@ -54,14 +54,14 @@ function logout() {
     positiveText: $t('common.confirm'),
     negativeText: $t('common.cancel'),
     onPositiveClick: () => {
-      authStore.resetStore();
-    }
-  });
+      authStore.resetStore()
+    },
+  })
 }
 
 function handleDropdown(key: DropdownKey) {
   if (key === 'logout') {
-    logout();
+    logout()
   }
 }
 </script>

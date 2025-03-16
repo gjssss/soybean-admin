@@ -1,83 +1,82 @@
 <script setup lang="ts">
-import { computed, shallowRef, watch } from 'vue';
-import { $t } from '@/locales';
-import type { System_menu } from '@/api/globals';
-import { wrapAlova } from '@/service/alova/wrap';
+import type { System_menu } from '@/api/globals'
+import { $t } from '@/locales'
+import { wrapAlova } from '@/service/alova/wrap'
+import { computed, shallowRef, watch } from 'vue'
 
 defineOptions({
-  name: 'MenuAuthModal'
-});
+  name: 'MenuAuthModal',
+})
+
+const props = defineProps<Props>()
 
 interface Props {
   /** the roleId */
-  roleId: number;
+  roleId: number
 }
-
-const props = defineProps<Props>();
 
 const visible = defineModel<boolean>('visible', {
-  default: false
-});
+  default: false,
+})
 
 function closeModal() {
-  visible.value = false;
+  visible.value = false
 }
 
-const title = computed(() => $t('common.edit') + $t('page.manage.role.menuAuth'));
+const title = computed(() => $t('common.edit') + $t('page.manage.role.menuAuth'))
 
-const tree = shallowRef<any[]>([]);
+const tree = shallowRef<any[]>([])
 
 async function getTree() {
-  const { error, data } = await wrapAlova(Apis.general.get_menus());
+  const { error, data } = await wrapAlova(Apis.general.get_menus())
   function mapFunc(item: System_menu): any {
     return {
       id: item.id,
       label: item.menuName,
       pId: item.parentId,
-      children: item.children?.map(mapFunc)
-    };
+      children: item.children?.map(mapFunc),
+    }
   }
   if (!error) {
-    tree.value = data.map(mapFunc);
+    tree.value = data.map(mapFunc)
   }
 }
 
-const checks = shallowRef<number[]>([]);
+const checks = shallowRef<number[]>([])
 
 async function getChecks() {
   // request
   const { data } = await Apis.general.get_menus_role({
     params: {
-      roleId: props.roleId
-    }
-  });
-  checks.value = data.map(item => item.id!) || [];
+      roleId: props.roleId,
+    },
+  })
+  checks.value = data.map(item => item.id!) || []
 }
 
 async function handleSubmit() {
-  console.log(checks.value, props.roleId);
   // request
   await Apis.general.post_roles_menus({
     data: {
       roleId: props.roleId,
-      menuIds: checks.value
-    }
-  });
-  window.$message?.success?.($t('common.modifySuccess'));
+      menuIds: checks.value,
+    },
+  })
+  window.$message?.success?.($t('common.modifySuccess'))
 
-  closeModal();
+  closeModal()
 }
 
 function init() {
-  getTree();
-  getChecks();
+  getTree()
+  getChecks()
 }
 
-watch(visible, val => {
+watch(visible, (val) => {
   if (val) {
-    init();
+    init()
   }
-});
+})
 </script>
 
 <template>

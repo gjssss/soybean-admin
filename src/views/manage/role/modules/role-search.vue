@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import { $t } from '@/locales';
+import { $t } from '@/locales'
 
 defineOptions({
-  name: 'RoleSearch'
-});
+  name: 'RoleSearch',
+})
+
+const emit = defineEmits<Emits>()
 
 interface Emits {
-  (e: 'reset'): void;
-  (e: 'search'): void;
+  (e: 'reset'): void
+  (e: 'search'): void
 }
 
-const emit = defineEmits<Emits>();
-
-const model = defineModel<Api.SystemManage.RoleSearchParams>('model', { required: true });
+const model = defineModel<Api.SystemManage.RoleSearchParams>('model', { required: true })
 
 function reset() {
-  emit('reset');
+  emit('reset')
 }
 
 function search() {
-  emit('search');
+  emit('search')
 }
 </script>
 

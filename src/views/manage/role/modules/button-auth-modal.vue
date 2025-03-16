@@ -1,86 +1,80 @@
 <script setup lang="ts">
-import { computed, shallowRef, watch } from 'vue';
-import { $t } from '@/locales';
+import type { TreeOption } from 'naive-ui'
+import { $t } from '@/locales'
+import { computed, shallowRef, watch } from 'vue'
 
 defineOptions({
-  name: 'ButtonAuthModal'
-});
+  name: 'ButtonAuthModal',
+})
+
+const props = defineProps<Props>()
 
 interface Props {
   /** the roleId */
-  roleId: number;
+  roleId: number
 }
-
-const props = defineProps<Props>();
 
 const visible = defineModel<boolean>('visible', {
-  default: false
-});
+  default: false,
+})
 
 function closeModal() {
-  visible.value = false;
+  visible.value = false
 }
 
-const title = computed(() => $t('common.edit') + $t('page.manage.role.buttonAuth'));
+const title = computed(() => $t('common.edit') + $t('page.manage.role.buttonAuth'))
 
-type ButtonConfig = {
-  id: number;
-  label: string;
-  code: string;
-};
-
-const tree = shallowRef<ButtonConfig[]>([]);
+const tree = shallowRef<TreeOption[]>([])
 
 async function getAllButtons() {
   // request
-  const { data } = await Apis.general.get_buttons();
-  tree.value =
-    data?.map(item => ({
+  const { data } = await Apis.general.get_buttons()
+  tree.value
+    = data?.map(item => ({
       id: item.id!,
       label: item.code!,
-      code: item.code!
-    })) || [];
+      key: item.code!,
+    })) || []
 }
 
-const checks = shallowRef<number[]>([]);
+const checks = shallowRef<number[]>([])
 
 async function getChecks() {
   // request
   const { data } = await Apis.general.get_buttons_role({
     params: {
-      roleId: props.roleId
-    }
-  });
-  checks.value = data.map(item => item.id!) || [];
+      roleId: props.roleId,
+    },
+  })
+  checks.value = data.map(item => item.id!) || []
 }
 
 async function handleSubmit() {
-  console.log(checks.value, props.roleId);
   // request
   await Apis.general.post_roles_buttons({
     data: {
       roleId: props.roleId,
-      buttonIds: checks.value
-    }
-  });
-  window.$message?.success?.($t('common.modifySuccess'));
+      buttonIds: checks.value,
+    },
+  })
+  window.$message?.success?.($t('common.modifySuccess'))
 
-  closeModal();
+  closeModal()
 }
 
 function init() {
-  getAllButtons();
-  getChecks();
+  getAllButtons()
+  getChecks()
 }
 
 // init
-init();
+init()
 
-watch(visible, val => {
+watch(visible, (val) => {
   if (val) {
-    init();
+    init()
   }
-});
+})
 </script>
 
 <template>
@@ -89,10 +83,8 @@ watch(visible, val => {
       v-model:checked-keys="checks"
       :data="tree"
       key-field="id"
-      block-line
-      checkable
-      expand-on-click
-      virtual-scroll
+
+      checkable expand-on-click virtual-scroll block-line
       class="h-280px"
     />
     <template #footer>

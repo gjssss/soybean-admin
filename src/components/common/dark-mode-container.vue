@@ -1,16 +1,16 @@
 <script setup lang="ts">
-defineOptions({ name: 'DarkModeContainer' });
+defineOptions({ name: 'DarkModeContainer' })
+
+defineProps<Props>()
 
 interface Props {
-  inverted?: boolean;
+  inverted?: boolean
 }
-
-defineProps<Props>();
 </script>
 
 <template>
   <div class="bg-container text-base-text transition-300" :class="{ 'bg-inverted text-#1f1f1f': inverted }">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import WebSiteLink from './web-site-link.vue';
+import WebSiteLink from './web-site-link.vue'
 
-defineOptions({ name: 'GithubLink' });
+defineOptions({ name: 'GithubLink' })
+
+defineProps<Props>()
 
 interface Props {
   /** github link */
-  link: string;
+  link: string
 }
-
-defineProps<Props>();
 </script>
 
 <template>

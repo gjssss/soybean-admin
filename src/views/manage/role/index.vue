@@ -1,13 +1,13 @@
 <script setup lang="tsx">
-import { NButton, NPopconfirm } from 'naive-ui';
-import { useAppStore } from '@/store/modules/app';
-import { useTable, useTableOperate } from '@/hooks/common/table';
-import { $t } from '@/locales';
-import { wrapAlovaTable } from '@/service/alova/wrap';
-import RoleOperateDrawer from './modules/role-operate-drawer.vue';
-import RoleSearch from './modules/role-search.vue';
+import { useTable, useTableOperate } from '@/hooks/common/table'
+import { $t } from '@/locales'
+import { wrapAlovaTable } from '@/service/alova/wrap'
+import { useAppStore } from '@/store/modules/app'
+import { NButton, NPopconfirm } from 'naive-ui'
+import RoleOperateDrawer from './modules/role-operate-drawer.vue'
+import RoleSearch from './modules/role-search.vue'
 
-const appStore = useAppStore();
+const appStore = useAppStore()
 const {
   columns,
   columnChecks,
@@ -17,17 +17,17 @@ const {
   getDataByPage,
   mobilePagination,
   searchParams,
-  resetSearchParams
+  resetSearchParams,
 } = useTable({
-  apiFn: (params: { current: number; size: number }) =>
+  apiFn: (params: { current: number, size: number }) =>
     wrapAlovaTable(
       Apis.general.get_roles({
-        params
-      })
+        params,
+      }),
     ),
   apiParams: {
     current: 1,
-    size: 10
+    size: 10,
     // if you want to use the searchParams in Form, you need to define the following properties, and the value is null
     // the value can not be undefined, otherwise the property in Form will not be reactive
   },
@@ -35,24 +35,24 @@ const {
     {
       type: 'selection',
       align: 'center',
-      width: 48
+      width: 48,
     },
     {
       key: 'index',
       title: $t('common.index'),
       width: 64,
-      align: 'center'
+      align: 'center',
     },
     {
       key: 'roleName',
       title: $t('page.manage.role.roleName'),
       align: 'center',
-      minWidth: 120
+      minWidth: 120,
     },
     {
       key: 'roleDesc',
       title: $t('page.manage.role.roleDesc'),
-      minWidth: 120
+      minWidth: 120,
     },
     {
       key: 'operate',
@@ -71,14 +71,14 @@ const {
                 <NButton type="error" ghost size="small">
                   {$t('common.delete')}
                 </NButton>
-              )
+              ),
             }}
           </NPopconfirm>
         </div>
-      )
-    }
-  ]
-});
+      ),
+    },
+  ],
+})
 
 const {
   drawerVisible,
@@ -88,35 +88,33 @@ const {
   handleEdit,
   checkedRowKeys,
   onBatchDeleted,
-  onDeleted
+  onDeleted,
   // closeDrawer
-} = useTableOperate(data, getData);
+} = useTableOperate(data, getData)
 
 async function handleBatchDelete() {
   // request
-  console.log(checkedRowKeys.value);
   await Apis.general.post_roles_batchdelete({
     data: {
-      ids: checkedRowKeys.value.map(Number)
-    }
-  });
-  onBatchDeleted();
+      ids: checkedRowKeys.value.map(Number),
+    },
+  })
+  onBatchDeleted()
 }
 
 async function handleDelete(id: number) {
   // request
-  console.log(id);
   await Apis.general.post_users_delete({
     data: {
-      id
-    }
-  });
+      id,
+    },
+  })
 
-  onDeleted();
+  onDeleted()
 }
 
 function edit(id: number) {
-  handleEdit(id);
+  handleEdit(id)
 }
 </script>
 

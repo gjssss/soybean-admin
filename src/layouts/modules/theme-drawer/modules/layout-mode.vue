@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { useAppStore } from '@/store/modules/app';
-import { useThemeStore } from '@/store/modules/theme';
-import { $t } from '@/locales';
-import LayoutModeCard from '../components/layout-mode-card.vue';
-import SettingItem from '../components/setting-item.vue';
+import { $t } from '@/locales'
+import { useAppStore } from '@/store/modules/app'
+import { useThemeStore } from '@/store/modules/theme'
+import LayoutModeCard from '../components/layout-mode-card.vue'
+import SettingItem from '../components/setting-item.vue'
 
 defineOptions({
-  name: 'LayoutMode'
-});
+  name: 'LayoutMode',
+})
 
-const appStore = useAppStore();
-const themeStore = useThemeStore();
+const appStore = useAppStore()
+const themeStore = useThemeStore()
 
 function handleReverseHorizontalMixChange(value: boolean) {
-  themeStore.setLayoutReverseHorizontalMix(value);
+  themeStore.setLayoutReverseHorizontalMix(value)
 }
 </script>
 
@@ -21,31 +21,31 @@ function handleReverseHorizontalMixChange(value: boolean) {
   <NDivider>{{ $t('theme.layoutMode.title') }}</NDivider>
   <LayoutModeCard v-model:mode="themeStore.layout.mode" :disabled="appStore.isMobile">
     <template #vertical>
-      <div class="layout-sider h-full w-18px"></div>
+      <div class="layout-sider h-full w-18px" />
       <div class="vertical-wrapper">
-        <div class="layout-header"></div>
-        <div class="layout-main"></div>
+        <div class="layout-header" />
+        <div class="layout-main" />
       </div>
     </template>
     <template #vertical-mix>
-      <div class="layout-sider h-full w-8px"></div>
-      <div class="layout-sider h-full w-16px"></div>
+      <div class="layout-sider h-full w-8px" />
+      <div class="layout-sider h-full w-16px" />
       <div class="vertical-wrapper">
-        <div class="layout-header"></div>
-        <div class="layout-main"></div>
+        <div class="layout-header" />
+        <div class="layout-main" />
       </div>
     </template>
     <template #horizontal>
-      <div class="layout-header"></div>
+      <div class="layout-header" />
       <div class="horizontal-wrapper">
-        <div class="layout-main"></div>
+        <div class="layout-main" />
       </div>
     </template>
     <template #horizontal-mix>
-      <div class="layout-header"></div>
+      <div class="layout-header" />
       <div class="horizontal-wrapper">
-        <div class="layout-sider w-18px"></div>
-        <div class="layout-main"></div>
+        <div class="layout-sider w-18px" />
+        <div class="layout-main" />
       </div>
     </template>
   </LayoutModeCard>

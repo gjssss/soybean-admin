@@ -1,24 +1,16 @@
-import { defineConfig } from '@soybeanjs/eslint-config';
+// eslint.config.mjs
+import antfu from '@antfu/eslint-config'
 
-export default defineConfig(
-  { vue: true, unocss: true },
-  {
-    rules: {
-      'vue/multi-word-component-names': [
-        'warn',
-        {
-          ignores: ['index', 'App', 'Register', '[id]', '[url]']
-        }
-      ],
-      'vue/component-name-in-template-casing': [
-        'warn',
-        'PascalCase',
-        {
-          registeredComponentsOnly: false,
-          ignores: ['/^icon-/']
-        }
-      ],
-      'unocss/order-attributify': 'off'
-    }
-  }
-);
+export default antfu({
+  unocss: true,
+  vue: true,
+  ignores: ['**/._*'],
+}, {
+  rules: {
+    'regexp/no-unused-capturing-group': 'off',
+    'regexp/no-useless-flag': 'off',
+    'eslint-comments/no-unlimited-disable': 'off',
+    'regexp/no-super-linear-backtracking': 'off',
+    'regexp/no-useless-quantifier': 'off',
+  },
+})

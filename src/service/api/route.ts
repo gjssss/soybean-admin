@@ -2,8 +2,8 @@
 export function fetchGetConstantRoutes() {
   return {
     data: [],
-    error: null
-  };
+    error: null,
+  }
 }
 
 function convertAToMenuRoute(menu: any): Api.Route.MenuRoute {
@@ -26,33 +26,32 @@ function convertAToMenuRoute(menu: any): Api.Route.MenuRoute {
       multiTab: menu.multiTab,
       order: menu.order,
       query: menu.query,
-      title: menu.menuName
+      title: menu.menuName,
     },
-    children: menu.children ? menu.children.map(convertAToMenuRoute) : []
-  };
+    children: menu.children ? menu.children.map(convertAToMenuRoute) : [],
+  }
 }
 
 /** get user routes */
 export async function fetchGetUserRoutes(): Promise<{
-  data: Api.Route.UserRoute;
-  error: any;
+  data: Api.Route.UserRoute
+  error: any
 }> {
-  const { data } = await Apis.general.get_menus_user();
+  const { data } = await Apis.general.get_menus_user()
 
   return {
     data: {
       routes: data?.map(convertAToMenuRoute) || [],
-      home: 'home'
+      home: 'home',
     },
-    error: null
-  };
+    error: null,
+  }
 }
 
 /**
  * whether the route is exist
  *
- * @param routeName route name
  */
 export function fetchIsRouteExist() {
-  return false;
+  return false
 }

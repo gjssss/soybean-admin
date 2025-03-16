@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { useThemeStore } from '@/store/modules/theme';
-import { $t } from '@/locales';
-import SettingItem from '../components/setting-item.vue';
+import { $t } from '@/locales'
+import { useThemeStore } from '@/store/modules/theme'
+import SettingItem from '../components/setting-item.vue'
 
 defineOptions({
-  name: 'ThemeColor'
-});
+  name: 'ThemeColor',
+})
 
-const themeStore = useThemeStore();
+const themeStore = useThemeStore()
 
 function handleUpdateColor(color: string, key: App.Theme.ThemeColorKey) {
-  themeStore.updateThemeColors(key, color);
+  themeStore.updateThemeColors(key, color)
 }
 
 const swatches: string[] = [
@@ -29,8 +29,8 @@ const swatches: string[] = [
   '#eab308',
   '#84cc16',
   '#22c55e',
-  '#10b981'
-];
+  '#10b981',
+]
 </script>
 
 <template>
@@ -44,7 +44,7 @@ const swatches: string[] = [
       </template>
       <p>
         <span class="pr-12px">{{ $t('theme.recommendColorDesc') }}</span>
-        <br />
+        <br>
         <NButton
           text
           tag="a"

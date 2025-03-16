@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { $t } from '@/locales';
+import { $t } from '@/locales'
+import { computed } from 'vue'
 
-defineOptions({ name: 'PinToggler' });
+defineOptions({ name: 'PinToggler' })
+
+const props = defineProps<Props>()
 
 interface Props {
-  pin?: boolean;
+  pin?: boolean
 }
 
-const props = defineProps<Props>();
-
-const icon = computed(() => (props.pin ? 'mdi-pin-off' : 'mdi-pin'));
+const icon = computed(() => (props.pin ? 'mdi-pin-off' : 'mdi-pin'))
 </script>
 
 <template>

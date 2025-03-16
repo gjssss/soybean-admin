@@ -4,7 +4,7 @@ const local: App.I18n.Schema = {
     updateTitle: 'System Version Update Notification',
     updateContent: 'A new version of the system has been detected. Do you want to refresh the page immediately?',
     updateConfirm: 'Refresh immediately',
-    updateCancel: 'Later'
+    updateCancel: 'Later',
   },
   common: {
     action: 'Action',
@@ -46,8 +46,8 @@ const local: App.I18n.Schema = {
     userCenter: 'User Center',
     yesOrNo: {
       yes: 'Yes',
-      no: 'No'
-    }
+      no: 'No',
+    },
   },
   request: {
     logout: 'Logout user after request failed',
@@ -55,24 +55,24 @@ const local: App.I18n.Schema = {
     logoutWithModal: 'Pop up modal after request failed and then log out user',
     logoutWithModalMsg: 'User status is invalid, please log in again',
     refreshToken: 'The requested token has expired, refresh the token',
-    tokenExpired: 'The requested token has expired'
+    tokenExpired: 'The requested token has expired',
   },
   theme: {
     themeSchema: {
       title: 'Theme Schema',
       light: 'Light',
       dark: 'Dark',
-      auto: 'Follow System'
+      auto: 'Follow System',
     },
     grayscale: 'Grayscale',
     colourWeakness: 'Colour Weakness',
     layoutMode: {
-      title: 'Layout Mode',
-      vertical: 'Vertical Menu Mode',
-      horizontal: 'Horizontal Menu Mode',
+      'title': 'Layout Mode',
+      'vertical': 'Vertical Menu Mode',
+      'horizontal': 'Horizontal Menu Mode',
       'vertical-mix': 'Vertical Mix Menu Mode',
       'horizontal-mix': 'Horizontal Mix menu Mode',
-      reverseHorizontalMix: 'Reverse first level menus and child level menus position'
+      'reverseHorizontalMix': 'Reverse first level menus and child level menus position',
     },
     recommendColor: 'Apply Recommended Color Algorithm',
     recommendColorDesc: 'The recommended color algorithm refers to',
@@ -83,36 +83,36 @@ const local: App.I18n.Schema = {
       success: 'Success',
       warning: 'Warning',
       error: 'Error',
-      followPrimary: 'Follow Primary'
+      followPrimary: 'Follow Primary',
     },
     scrollMode: {
       title: 'Scroll Mode',
       wrapper: 'Wrapper',
-      content: 'Content'
+      content: 'Content',
     },
     page: {
       animate: 'Page Animate',
       mode: {
-        title: 'Page Animate Mode',
-        fade: 'Fade',
+        'title': 'Page Animate Mode',
+        'fade': 'Fade',
         'fade-slide': 'Slide',
         'fade-bottom': 'Fade Zoom',
         'fade-scale': 'Fade Scale',
         'zoom-fade': 'Zoom Fade',
         'zoom-out': 'Zoom Out',
-        none: 'None'
-      }
+        'none': 'None',
+      },
     },
     fixedHeaderAndTab: 'Fixed Header And Tab',
     header: {
       height: 'Header Height',
       breadcrumb: {
         visible: 'Breadcrumb Visible',
-        showIcon: 'Breadcrumb Icon Visible'
+        showIcon: 'Breadcrumb Icon Visible',
       },
       multilingual: {
-        visible: 'Display multilingual button'
-      }
+        visible: 'Display multilingual button',
+      },
     },
     tab: {
       visible: 'Tab Visible',
@@ -121,8 +121,8 @@ const local: App.I18n.Schema = {
       mode: {
         title: 'Tab Mode',
         chrome: 'Chrome',
-        button: 'Button'
-      }
+        button: 'Button',
+      },
     },
     sider: {
       inverted: 'Dark Sider',
@@ -130,57 +130,57 @@ const local: App.I18n.Schema = {
       collapsedWidth: 'Sider Collapsed Width',
       mixWidth: 'Mix Sider Width',
       mixCollapsedWidth: 'Mix Sider Collapse Width',
-      mixChildMenuWidth: 'Mix Child Menu Width'
+      mixChildMenuWidth: 'Mix Child Menu Width',
     },
     footer: {
       visible: 'Footer Visible',
       fixed: 'Fixed Footer',
       height: 'Footer Height',
-      right: 'Right Footer'
+      right: 'Right Footer',
     },
     watermark: {
       visible: 'Watermark Full Screen Visible',
-      text: 'Watermark Text'
+      text: 'Watermark Text',
     },
     themeDrawerTitle: 'Theme Configuration',
     pageFunTitle: 'Page Function',
     resetCacheStrategy: {
       title: 'Reset Cache Strategy',
       close: 'Close Page',
-      refresh: 'Refresh Page'
+      refresh: 'Refresh Page',
     },
     configOperation: {
       copyConfig: 'Copy Config',
       copySuccessMsg: 'Copy Success, Please replace the variable "themeSettings" in "src/theme/settings.ts"',
       resetConfig: 'Reset Config',
-      resetSuccessMsg: 'Reset Success'
-    }
+      resetSuccessMsg: 'Reset Success',
+    },
   },
   route: {
-    login: 'Login',
-    403: 'No Permission',
-    404: 'Page Not Found',
-    500: 'Server Error',
+    'login': 'Login',
+    '403': 'No Permission',
+    '404': 'Page Not Found',
+    '500': 'Server Error',
     'iframe-page': 'Iframe',
-    home: 'Home',
-    document: 'Document',
-    document_project: 'Project Document',
+    'home': 'Home',
+    'document': 'Document',
+    'document_project': 'Project Document',
     'document_project-link': 'Project Document(External Link)',
-    document_vue: 'Vue Document',
-    document_vite: 'Vite Document',
-    document_unocss: 'UnoCSS Document',
-    document_naive: 'Naive UI Document',
-    document_antd: 'Ant Design Vue Document',
-    document_alova: 'Alova Document',
-    manage: 'System Manage',
-    manage_user: 'User Manage',
+    'document_vue': 'Vue Document',
+    'document_vite': 'Vite Document',
+    'document_unocss': 'UnoCSS Document',
+    'document_naive': 'Naive UI Document',
+    'document_antd': 'Ant Design Vue Document',
+    'document_alova': 'Alova Document',
+    'manage': 'System Manage',
+    'manage_user': 'User Manage',
     'manage_user-detail': 'User Detail',
-    manage_role: 'Role Manage',
-    manage_menu: 'Menu Manage',
-    exception: 'Exception',
-    exception_403: '403',
-    exception_404: '404',
-    exception_500: '500'
+    'manage_role': 'Role Manage',
+    'manage_menu': 'Menu Manage',
+    'exception': 'Exception',
+    'exception_403': '403',
+    'exception_404': '404',
+    'exception_500': '500',
   },
   page: {
     login: {
@@ -196,7 +196,7 @@ const local: App.I18n.Schema = {
         back: 'Back',
         validateSuccess: 'Verification passed',
         loginSuccess: 'Login successfully',
-        welcomeBack: 'Welcome back, {userName} !'
+        welcomeBack: 'Welcome back, {userName} !',
       },
       pwdLogin: {
         title: 'Password Login',
@@ -207,27 +207,27 @@ const local: App.I18n.Schema = {
         otherLoginMode: 'Other Login Mode',
         superAdmin: 'Super Admin',
         admin: 'Admin',
-        user: 'User'
+        user: 'User',
       },
       codeLogin: {
         title: 'Verification Code Login',
         getCode: 'Get verification code',
         reGetCode: 'Reacquire after {time}s',
         sendCodeSuccess: 'Verification code sent successfully',
-        imageCodePlaceholder: 'Please enter image verification code'
+        imageCodePlaceholder: 'Please enter image verification code',
       },
       register: {
         title: 'Register',
         agreement: 'I have read and agree to',
         protocol: '《User Agreement》',
-        policy: '《Privacy Policy》'
+        policy: '《Privacy Policy》',
       },
       resetPwd: {
-        title: 'Reset Password'
+        title: 'Reset Password',
       },
       bindWeChat: {
-        title: 'Bind WeChat'
-      }
+        title: 'Bind WeChat',
+      },
     },
     about: {
       title: 'About',
@@ -237,10 +237,10 @@ const local: App.I18n.Schema = {
         version: 'Version',
         latestBuildTime: 'Latest Build Time',
         githubLink: 'Github Link',
-        previewLink: 'Preview Link'
+        previewLink: 'Preview Link',
       },
       prdDep: 'Production Dependency',
-      devDep: 'Development Dependency'
+      devDep: 'Development Dependency',
     },
     home: {
       branchDesc:
@@ -267,9 +267,9 @@ const local: App.I18n.Schema = {
         desc2: 'Yanbowe submitted a bug to soybean-admin, the multi-tab bar will not adapt.',
         desc3: 'Soybean is ready to do sufficient preparation for the release of soybean-admin!',
         desc4: 'Soybean is busy writing project documentation for soybean-admin!',
-        desc5: 'Soybean just wrote some of the workbench pages casually, and it was enough to see!'
+        desc5: 'Soybean just wrote some of the workbench pages casually, and it was enough to see!',
       },
-      creativity: 'Creativity'
+      creativity: 'Creativity',
     },
     function: {
       tab: {
@@ -282,33 +282,33 @@ const local: App.I18n.Schema = {
           closeAboutTab: 'Close "About" Tab',
           addMultiTab: 'Add Multi Tab',
           addMultiTabDesc1: 'To MultiTab page',
-          addMultiTabDesc2: 'To MultiTab page(with query params)'
+          addMultiTabDesc2: 'To MultiTab page(with query params)',
         },
         tabTitle: {
           title: 'Tab Title',
           changeTitle: 'Change Title',
           change: 'Change',
           resetTitle: 'Reset Title',
-          reset: 'Reset'
-        }
+          reset: 'Reset',
+        },
       },
       multiTab: {
         routeParam: 'Route Param',
-        backTab: 'Back function_tab'
+        backTab: 'Back function_tab',
       },
       toggleAuth: {
         toggleAccount: 'Toggle Account',
         authHook: 'Auth Hook Function `hasAuth`',
         superAdminVisible: 'Super Admin Visible',
         adminVisible: 'Admin Visible',
-        adminOrUserVisible: 'Admin and User Visible'
+        adminOrUserVisible: 'Admin and User Visible',
       },
       request: {
         repeatedErrorOccurOnce: 'Repeated Request Error Occurs Once',
         repeatedError: 'Repeated Request Error',
         repeatedErrorMsg1: 'Custom Request Error 1',
-        repeatedErrorMsg2: 'Custom Request Error 2'
-      }
+        repeatedErrorMsg2: 'Custom Request Error 2',
+      },
     },
     alova: {
       scenes: {
@@ -321,15 +321,15 @@ const local: App.I18n.Schema = {
         startRequest: 'Start Request',
         stopRequest: 'Stop Request',
         requestCrossComponent: 'Request Cross Component',
-        triggerAllRequest: 'Manually Trigger All Automated Requests'
-      }
+        triggerAllRequest: 'Manually Trigger All Automated Requests',
+      },
     },
     manage: {
       common: {
         status: {
           enable: 'Enable',
-          disable: 'Disable'
-        }
+          disable: 'Disable',
+        },
       },
       role: {
         title: 'Role List',
@@ -343,10 +343,10 @@ const local: App.I18n.Schema = {
           roleName: 'Please enter role name',
           roleCode: 'Please enter role code',
           roleStatus: 'Please select role status',
-          roleDesc: 'Please enter role description'
+          roleDesc: 'Please enter role description',
         },
         addRole: 'Add Role',
-        editRole: 'Edit Role'
+        editRole: 'Edit Role',
       },
       user: {
         title: 'User List',
@@ -366,14 +366,14 @@ const local: App.I18n.Schema = {
           userPhone: 'Please enter phone number',
           userEmail: 'Please enter email',
           userStatus: 'Please select user status',
-          userRole: 'Please select user role'
+          userRole: 'Please select user role',
         },
         addUser: 'Add User',
         editUser: 'Edit User',
         gender: {
           male: 'Male',
-          female: 'Female'
-        }
+          female: 'Female',
+        },
       },
       menu: {
         home: 'Home',
@@ -429,55 +429,55 @@ const local: App.I18n.Schema = {
           button: 'Please select whether it is a button',
           buttonCode: 'Please enter button code',
           buttonDesc: 'Please enter button description',
-          menuStatus: 'Please select menu status'
+          menuStatus: 'Please select menu status',
         },
         addMenu: 'Add Menu',
         editMenu: 'Edit Menu',
         addChildMenu: 'Add Child Menu',
         type: {
           directory: 'Directory',
-          menu: 'Menu'
+          menu: 'Menu',
         },
         iconType: {
           iconify: 'Iconify Icon',
-          local: 'Local Icon'
-        }
-      }
-    }
+          local: 'Local Icon',
+        },
+      },
+    },
   },
   form: {
     required: 'Cannot be empty',
     userName: {
       required: 'Please enter user name',
-      invalid: 'User name format is incorrect'
+      invalid: 'User name format is incorrect',
     },
     phone: {
       required: 'Please enter phone number',
-      invalid: 'Phone number format is incorrect'
+      invalid: 'Phone number format is incorrect',
     },
     pwd: {
       required: 'Please enter password',
-      invalid: '6-18 characters, including letters, numbers, and underscores'
+      invalid: '6-18 characters, including letters, numbers, and underscores',
     },
     confirmPwd: {
       required: 'Please enter password again',
-      invalid: 'The two passwords are inconsistent'
+      invalid: 'The two passwords are inconsistent',
     },
     code: {
       required: 'Please enter verification code',
-      invalid: 'Verification code format is incorrect'
+      invalid: 'Verification code format is incorrect',
     },
     email: {
       required: 'Please enter email',
-      invalid: 'Email format is incorrect'
-    }
+      invalid: 'Email format is incorrect',
+    },
   },
   dropdown: {
     closeCurrent: 'Close Current',
     closeOther: 'Close Other',
     closeLeft: 'Close Left',
     closeRight: 'Close Right',
-    closeAll: 'Close All'
+    closeAll: 'Close All',
   },
   icon: {
     themeConfig: 'Theme Configuration',
@@ -489,11 +489,11 @@ const local: App.I18n.Schema = {
     collapse: 'Collapse Menu',
     expand: 'Expand Menu',
     pin: 'Pin',
-    unpin: 'Unpin'
+    unpin: 'Unpin',
   },
   datatable: {
-    itemCount: 'Total {total} items'
-  }
-};
+    itemCount: 'Total {total} items',
+  },
+}
 
-export default local;
+export default local

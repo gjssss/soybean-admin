@@ -1,41 +1,41 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { $t } from '@/locales';
-import { useFormRules, useNaiveForm } from '@/hooks/common/form';
+import { useFormRules, useNaiveForm } from '@/hooks/common/form'
+import { $t } from '@/locales'
+import { computed } from 'vue'
 
 defineOptions({
-  name: 'UserSearch'
-});
+  name: 'UserSearch',
+})
+
+const emit = defineEmits<Emits>()
 
 interface Emits {
-  (e: 'reset'): void;
-  (e: 'search'): void;
+  (e: 'reset'): void
+  (e: 'search'): void
 }
 
-const emit = defineEmits<Emits>();
+const { formRef, validate, restoreValidation } = useNaiveForm()
 
-const { formRef, validate, restoreValidation } = useNaiveForm();
+const model = defineModel<Api.SystemManage.UserSearchParams>('model', { required: true })
 
-const model = defineModel<Api.SystemManage.UserSearchParams>('model', { required: true });
-
-type RuleKey = 'userName';
+type RuleKey = 'userName'
 
 const rules = computed<Record<RuleKey, App.Global.FormRule>>(() => {
-  const { patternRules } = useFormRules(); // inside computed to make locale reactive
+  const { patternRules } = useFormRules() // inside computed to make locale reactive
 
   return {
-    userName: patternRules.userName
-  };
-});
+    userName: patternRules.userName,
+  }
+})
 
 async function reset() {
-  await restoreValidation();
-  emit('reset');
+  await restoreValidation()
+  emit('reset')
 }
 
 async function search() {
-  await validate();
-  emit('search');
+  await validate()
+  emit('search')
 }
 </script>
 

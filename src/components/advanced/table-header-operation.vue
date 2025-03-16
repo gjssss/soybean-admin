@@ -1,46 +1,46 @@
 <script setup lang="ts">
-import { $t } from '@/locales';
+import { $t } from '@/locales'
 
 defineOptions({
-  name: 'TableHeaderOperation'
-});
+  name: 'TableHeaderOperation',
+})
+
+defineProps<Props>()
+
+const emit = defineEmits<Emits>()
 
 interface Props {
-  itemAlign?: NaiveUI.Align;
-  disabledDelete?: boolean;
-  loading?: boolean;
+  itemAlign?: NaiveUI.Align
+  disabledDelete?: boolean
+  loading?: boolean
 }
-
-defineProps<Props>();
 
 interface Emits {
-  (e: 'add'): void;
-  (e: 'delete'): void;
-  (e: 'refresh'): void;
+  (e: 'add'): void
+  (e: 'delete'): void
+  (e: 'refresh'): void
 }
 
-const emit = defineEmits<Emits>();
-
 const columns = defineModel<NaiveUI.TableColumnCheck[]>('columns', {
-  default: () => []
-});
+  default: () => [],
+})
 
 function add() {
-  emit('add');
+  emit('add')
 }
 
 function batchDelete() {
-  emit('delete');
+  emit('delete')
 }
 
 function refresh() {
-  emit('refresh');
+  emit('refresh')
 }
 </script>
 
 <template>
   <NSpace :align="itemAlign" wrap justify="end" class="lt-sm:w-200px">
-    <slot name="prefix"></slot>
+    <slot name="prefix" />
     <slot name="default">
       <NButton size="small" ghost type="primary" @click="add">
         <template #icon>
@@ -67,7 +67,7 @@ function refresh() {
       {{ $t('common.refresh') }}
     </NButton>
     <TableColumnSetting v-model:columns="columns" />
-    <slot name="suffix"></slot>
+    <slot name="suffix" />
   </NSpace>
 </template>
 

@@ -1,41 +1,41 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
-import { $t } from '@/locales';
-import { useRouterPush } from '@/hooks/common/router';
-import { useFormRules, useNaiveForm } from '@/hooks/common/form';
-import { useCaptcha } from '@/hooks/business/captcha';
+import { useCaptcha } from '@/hooks/business/captcha'
+import { useFormRules, useNaiveForm } from '@/hooks/common/form'
+import { useRouterPush } from '@/hooks/common/router'
+import { $t } from '@/locales'
+import { computed, reactive } from 'vue'
 
 defineOptions({
-  name: 'CodeLogin'
-});
+  name: 'CodeLogin',
+})
 
-const { toggleLoginModule } = useRouterPush();
-const { formRef, validate } = useNaiveForm();
-const { label, isCounting, loading, getCaptcha } = useCaptcha();
+const { toggleLoginModule } = useRouterPush()
+const { formRef, validate } = useNaiveForm()
+const { label, isCounting, loading, getCaptcha } = useCaptcha()
 
 interface FormModel {
-  phone: string;
-  code: string;
+  phone: string
+  code: string
 }
 
 const model: FormModel = reactive({
   phone: '',
-  code: ''
-});
+  code: '',
+})
 
 const rules = computed<Record<keyof FormModel, App.Global.FormRule[]>>(() => {
-  const { formRules } = useFormRules();
+  const { formRules } = useFormRules()
 
   return {
     phone: formRules.phone,
-    code: formRules.code
-  };
-});
+    code: formRules.code,
+  }
+})
 
 async function handleSubmit() {
-  await validate();
+  await validate()
   // request
-  window.$message?.success($t('page.login.common.validateSuccess'));
+  window.$message?.success($t('page.login.common.validateSuccess'))
 }
 </script>
 

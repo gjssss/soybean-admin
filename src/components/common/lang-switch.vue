@@ -1,38 +1,40 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { $t } from '@/locales';
+import type { DropdownOption } from 'naive-ui'
+import { $t } from '@/locales'
+import { computed } from 'vue'
 
 defineOptions({
-  name: 'LangSwitch'
-});
+  name: 'LangSwitch',
+})
+
+const props = withDefaults(defineProps<Props>(), {
+  showTooltip: true,
+})
+
+const emit = defineEmits<Emits>()
 
 interface Props {
   /** Current language */
-  lang: App.I18n.LangType;
+  lang: App.I18n.LangType
   /** Language options */
-  langOptions: App.I18n.LangOption[];
+  langOptions: DropdownOption[]
   /** Show tooltip */
-  showTooltip?: boolean;
+  showTooltip?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  showTooltip: true
-});
-
-type Emits = {
-  (e: 'changeLang', lang: App.I18n.LangType): void;
-};
-
-const emit = defineEmits<Emits>();
+interface Emits {
+  (e: 'changeLang', lang: App.I18n.LangType): void
+}
 
 const tooltipContent = computed(() => {
-  if (!props.showTooltip) return '';
+  if (!props.showTooltip)
+    return ''
 
-  return $t('icon.lang');
-});
+  return $t('icon.lang')
+})
 
 function changeLang(lang: App.I18n.LangType) {
-  emit('changeLang', lang);
+  emit('changeLang', lang)
 }
 </script>
 

@@ -8,20 +8,20 @@ declare namespace Api {
     /** common params of paginating */
     interface PaginatingCommonParams {
       /** current page number */
-      current: number;
+      current: number
       /** page size */
-      size: number;
+      size: number
       /** total count */
-      total: number;
+      total: number
     }
 
     /** common params of paginating query list data */
     interface PaginatingQueryRecord<T = any> extends PaginatingCommonParams {
-      records: T[];
+      records: T[]
     }
 
     /** common search params of table */
-    type CommonSearchParams = Pick<Common.PaginatingCommonParams, 'current' | 'size'>;
+    type CommonSearchParams = Pick<Common.PaginatingCommonParams, 'current' | 'size'>
 
     /**
      * enable status
@@ -29,17 +29,17 @@ declare namespace Api {
      * - "1": enabled
      * - "2": disabled
      */
-    type EnableStatus = '1' | '2';
+    type EnableStatus = '1' | '2'
 
     /** common record */
     type CommonRecord<T = any> = {
       /** record id */
-      id: number;
+      id: number
       /** record create time */
-      createTime: string;
+      createTime: string
       /** record update time */
-      updateTime: string;
-    } & T;
+      updateTime: string
+    } & T
   }
 
   /**
@@ -49,15 +49,15 @@ declare namespace Api {
    */
   namespace Auth {
     interface LoginToken {
-      token: string;
-      refreshToken: string;
+      token: string
+      refreshToken: string
     }
 
     interface UserInfo {
-      id: number;
-      userName: string;
-      roles: string[];
-      buttons: string[];
+      id: number
+      userName: string
+      roles: string[]
+      buttons: string[]
     }
   }
 
@@ -67,15 +67,15 @@ declare namespace Api {
    * backend api module: "route"
    */
   namespace Route {
-    type ElegantConstRoute = import('@elegant-router/types').ElegantConstRoute;
+    type ElegantConstRoute = import('@elegant-router/types').ElegantConstRoute
 
     interface MenuRoute extends ElegantConstRoute {
-      id: string;
+      id: string
     }
 
     interface UserRoute {
-      routes: MenuRoute[];
-      home: import('@elegant-router/types').LastLevelRouteKey;
+      routes: MenuRoute[]
+      home: import('@elegant-router/types').LastLevelRouteKey
     }
   }
 
@@ -85,30 +85,30 @@ declare namespace Api {
    * backend api module: "systemManage"
    */
   namespace SystemManage {
-    type CommonSearchParams = Pick<Common.PaginatingCommonParams, 'current' | 'size'>;
+    type CommonSearchParams = Pick<Common.PaginatingCommonParams, 'current' | 'size'>
 
     /** role */
     type Role = Common.CommonRecord<{
       /** role name */
-      roleName: string;
+      roleName: string
       /** role code */
-      roleCode: string;
+      roleCode: string
       /** role description */
-      roleDesc: string;
-      menu?: Partial<Menu>[];
-      buttons?: Partial<Button>[];
-    }>;
+      roleDesc: string
+      menu?: Partial<Menu>[]
+      buttons?: Partial<Button>[]
+    }>
 
     /** role search params */
     type RoleSearchParams = CommonType.RecordNullable<
       Pick<Api.SystemManage.Role, 'roleName' | 'roleCode'> & CommonSearchParams
-    >;
+    >
 
     /** role list */
-    type RoleList = Common.PaginatingQueryRecord<Role>;
+    type RoleList = Common.PaginatingQueryRecord<Role>
 
     /** all role */
-    type AllRole = Pick<Role, 'id' | 'roleName' | 'roleCode'>;
+    type AllRole = Pick<Role, 'id' | 'roleName' | 'roleCode'>
 
     /**
      * user gender
@@ -116,21 +116,21 @@ declare namespace Api {
      * - "1": "male"
      * - "2": "female"
      */
-    type UserGender = '1' | '2';
+    type UserGender = '1' | '2'
 
     /** user */
     type User = Common.CommonRecord<{
       /** user name */
-      userName: string;
-      id: number;
-      userRoles: string[];
-    }>;
+      userName: string
+      id: number
+      userRoles: string[]
+    }>
 
     /** user search params */
-    type UserSearchParams = CommonType.RecordNullable<Pick<Api.SystemManage.User, 'userName'> & CommonSearchParams>;
+    type UserSearchParams = CommonType.RecordNullable<Pick<Api.SystemManage.User, 'userName'> & CommonSearchParams>
 
     /** user list */
-    type UserList = Common.PaginatingQueryRecord<User>;
+    type UserList = Common.PaginatingQueryRecord<User>
 
     /**
      * menu type
@@ -138,18 +138,18 @@ declare namespace Api {
      * - "1": directory
      * - "2": menu
      */
-    type MenuType = '1' | '2';
+    type MenuType = '1' | '2'
 
-    type MenuButton = {
+    interface MenuButton {
       /**
        * button code
        *
        * it can be used to control the button permission
        */
-      code: string;
+      code: string
       /** button description */
-      desc: string;
-    };
+      desc: string
+    }
 
     /**
      * icon type
@@ -157,60 +157,60 @@ declare namespace Api {
      * - "1": iconify icon
      * - "2": local icon
      */
-    type IconType = '1' | '2';
+    type IconType = '1' | '2'
 
     type MenuPropsOfRoute = Pick<
       import('vue-router').RouteMeta,
-      | 'i18nKey'
-      | 'keepAlive'
-      | 'constant'
-      | 'order'
-      | 'href'
-      | 'hideInMenu'
-      | 'activeMenu'
-      | 'multiTab'
-      | 'fixedIndexInTab'
-      | 'query'
-    >;
+        | 'i18nKey'
+        | 'keepAlive'
+        | 'constant'
+        | 'order'
+        | 'href'
+        | 'hideInMenu'
+        | 'activeMenu'
+        | 'multiTab'
+        | 'fixedIndexInTab'
+        | 'query'
+    >
 
     type Menu = Common.CommonRecord<{
       /** parent menu id */
-      parentId: number;
+      parentId: number
       /** menu type */
-      menuType: MenuType;
+      menuType: MenuType
       /** menu name */
-      menuName: string;
+      menuName: string
       /** route name */
-      routeName: string;
+      routeName: string
       /** route path */
-      routePath: string;
+      routePath: string
       /** component */
-      component?: string;
+      component?: string
       /** iconify icon name or local icon name */
-      icon: string;
+      icon: string
       /** icon type */
-      iconType: IconType;
+      iconType: IconType
       /** buttons */
-      buttons?: MenuButton[] | null;
+      buttons?: MenuButton[] | null
       /** children menu */
-      children?: Menu[] | null;
+      children?: Menu[] | null
     }> &
-      MenuPropsOfRoute;
+    MenuPropsOfRoute
 
     /** menu list */
-    type MenuList = Common.PaginatingQueryRecord<Menu>;
+    type MenuList = Common.PaginatingQueryRecord<Menu>
 
-    type MenuTree = {
-      id: number;
-      label: string;
-      pId: number;
-      children?: MenuTree[];
-    };
+    interface MenuTree {
+      id: number
+      label: string
+      pId: number
+      children?: MenuTree[]
+    }
 
-    type Button = {
-      id: number;
-      code: string;
-      desc: string;
-    };
+    interface Button {
+      id: number
+      code: string
+      desc: string
+    }
   }
 }
