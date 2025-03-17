@@ -260,7 +260,18 @@ export type Utils_response_array_system_menu = {
    */
   msg: string;
 };
+export type System_api = {
+  createTime?: string;
+  group?: string;
+  id?: number;
+  method?: string;
+  name?: string;
+  path?: string;
+  roles?: System_role[];
+  updateTime?: string;
+};
 export type System_role = {
+  Apis?: System_api[];
   buttons?: System_button[];
   createTime?: string;
   id?: number;
@@ -395,6 +406,34 @@ export type Utils_response_utils_existsresult = {
    * [required]
    */
   data: Utils_existsresult;
+  /**
+   * [required]
+   */
+  msg: string;
+};
+export type Utils_response_array_system_api = {
+  /**
+   * [required]
+   */
+  code: string;
+  /**
+   * [required]
+   */
+  data: System_api[];
+  /**
+   * [required]
+   */
+  msg: string;
+};
+export type Utils_response_system_api = {
+  /**
+   * [required]
+   */
+  code: string;
+  /**
+   * [required]
+   */
+  data: System_api;
   /**
    * [required]
    */
@@ -1474,6 +1513,16 @@ declare global {
        *     current: number
        *     // [required]
        *     records: Array<{
+       *       Apis?: Array<{
+       *         createTime?: string
+       *         group?: string
+       *         id?: number
+       *         method?: string
+       *         name?: string
+       *         path?: string
+       *         roles?: Array<System_role>
+       *         updateTime?: string
+       *       }>
        *       buttons?: Array<{
        *         code?: string
        *         createTime?: string
@@ -1573,6 +1622,16 @@ declare global {
        * **RequestBody**
        * ```ts
        * type RequestBody = {
+       *   Apis?: Array<{
+       *     createTime?: string
+       *     group?: string
+       *     id?: number
+       *     method?: string
+       *     name?: string
+       *     path?: string
+       *     roles?: Array<System_role>
+       *     updateTime?: string
+       *   }>
        *   buttons?: Array<{
        *     code?: string
        *     createTime?: string
@@ -1645,6 +1704,16 @@ declare global {
        *   code: string
        *   // [required]
        *   data: {
+       *     Apis?: Array<{
+       *       createTime?: string
+       *       group?: string
+       *       id?: number
+       *       method?: string
+       *       name?: string
+       *       path?: string
+       *       roles?: Array<System_role>
+       *       updateTime?: string
+       *     }>
        *     buttons?: Array<{
        *       code?: string
        *       createTime?: string
@@ -1734,6 +1803,16 @@ declare global {
        *   code: string
        *   // [required]
        *   data: Array<{
+       *     Apis?: Array<{
+       *       createTime?: string
+       *       group?: string
+       *       id?: number
+       *       method?: string
+       *       name?: string
+       *       path?: string
+       *       roles?: Array<System_role>
+       *       updateTime?: string
+       *     }>
        *     buttons?: Array<{
        *       code?: string
        *       createTime?: string
@@ -1975,6 +2054,16 @@ declare global {
        * **RequestBody**
        * ```ts
        * type RequestBody = {
+       *   Apis?: Array<{
+       *     createTime?: string
+       *     group?: string
+       *     id?: number
+       *     method?: string
+       *     name?: string
+       *     path?: string
+       *     roles?: Array<System_role>
+       *     updateTime?: string
+       *   }>
        *   buttons?: Array<{
        *     code?: string
        *     createTime?: string
@@ -2095,6 +2184,16 @@ declare global {
        *       id?: number
        *       password?: string
        *       roles?: Array<{
+       *         Apis?: Array<{
+       *           createTime?: string
+       *           group?: string
+       *           id?: number
+       *           method?: string
+       *           name?: string
+       *           path?: string
+       *           roles?: Array<System_role>
+       *           updateTime?: string
+       *         }>
        *         buttons?: Array<{
        *           code?: string
        *           createTime?: string
@@ -2201,6 +2300,16 @@ declare global {
        *   id?: number
        *   password?: string
        *   roles?: Array<{
+       *     Apis?: Array<{
+       *       createTime?: string
+       *       group?: string
+       *       id?: number
+       *       method?: string
+       *       name?: string
+       *       path?: string
+       *       roles?: Array<System_role>
+       *       updateTime?: string
+       *     }>
        *     buttons?: Array<{
        *       code?: string
        *       createTime?: string
@@ -2280,6 +2389,16 @@ declare global {
        *     id?: number
        *     password?: string
        *     roles?: Array<{
+       *       Apis?: Array<{
+       *         createTime?: string
+       *         group?: string
+       *         id?: number
+       *         method?: string
+       *         name?: string
+       *         path?: string
+       *         roles?: Array<System_role>
+       *         updateTime?: string
+       *       }>
        *       buttons?: Array<{
        *         code?: string
        *         createTime?: string
@@ -2454,6 +2573,16 @@ declare global {
        *   id?: number
        *   password?: string
        *   roles?: Array<{
+       *     Apis?: Array<{
+       *       createTime?: string
+       *       group?: string
+       *       id?: number
+       *       method?: string
+       *       name?: string
+       *       path?: string
+       *       roles?: Array<System_role>
+       *       updateTime?: string
+       *     }>
        *     buttons?: Array<{
        *       code?: string
        *       createTime?: string
@@ -2609,6 +2738,16 @@ declare global {
        *   code: string
        *   // [required]
        *   data: Array<{
+       *     Apis?: Array<{
+       *       createTime?: string
+       *       group?: string
+       *       id?: number
+       *       method?: string
+       *       name?: string
+       *       path?: string
+       *       roles?: Array<System_role>
+       *       updateTime?: string
+       *     }>
        *     buttons?: Array<{
        *       code?: string
        *       createTime?: string
@@ -2729,6 +2868,281 @@ declare global {
       >(
         config: Config
       ): Alova2Method<Utils_response_string, 'general.post_users_roles', Config>;
+    };
+    api: {
+      /**
+       * ---
+       *
+       * [GET] 获取所有API接口
+       *
+       * **path:** /apis
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // [required]
+       *   code: string
+       *   // [required]
+       *   data: Array<{
+       *     createTime?: string
+       *     group?: string
+       *     id?: number
+       *     method?: string
+       *     name?: string
+       *     path?: string
+       *     roles?: Array<System_role>
+       *     updateTime?: string
+       *   }>
+       *   // [required]
+       *   msg: string
+       * }
+       * ```
+       */
+      get_apis<Config extends Alova2MethodConfig<Utils_response_array_system_api>>(
+        config?: Config
+      ): Alova2Method<Utils_response_array_system_api, 'api.get_apis', Config>;
+      /**
+       * ---
+       *
+       * [POST] 创建API接口
+       *
+       * **path:** /apis
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   createTime?: string
+       *   group?: string
+       *   id?: number
+       *   method?: string
+       *   name?: string
+       *   path?: string
+       *   roles?: Array<System_role>
+       *   updateTime?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // [required]
+       *   code: string
+       *   // [required]
+       *   data: {
+       *     createTime?: string
+       *     group?: string
+       *     id?: number
+       *     method?: string
+       *     name?: string
+       *     path?: string
+       *     roles?: Array<System_role>
+       *     updateTime?: string
+       *   }
+       *   // [required]
+       *   msg: string
+       * }
+       * ```
+       */
+      post_apis<
+        Config extends Alova2MethodConfig<Utils_response_system_api> & {
+          data: System_api;
+        }
+      >(
+        config: Config
+      ): Alova2Method<Utils_response_system_api, 'api.post_apis', Config>;
+      /**
+       * ---
+       *
+       * [POST] 删除API接口
+       *
+       * **path:** /apis/delete
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   id?: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // [required]
+       *   code: string
+       *   // [required]
+       *   data: string
+       *   // [required]
+       *   msg: string
+       * }
+       * ```
+       */
+      post_apis_delete<
+        Config extends Alova2MethodConfig<Utils_response_string> & {
+          data: {
+            id?: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<Utils_response_string, 'api.post_apis_delete', Config>;
+      /**
+       * ---
+       *
+       * [GET] 获取角色API接口
+       *
+       * **path:** /apis/role
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 角色ID
+       *   // [required]
+       *   roleId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // [required]
+       *   code: string
+       *   // [required]
+       *   data: Array<{
+       *     createTime?: string
+       *     group?: string
+       *     id?: number
+       *     method?: string
+       *     name?: string
+       *     path?: string
+       *     roles?: Array<System_role>
+       *     updateTime?: string
+       *   }>
+       *   // [required]
+       *   msg: string
+       * }
+       * ```
+       */
+      get_apis_role<
+        Config extends Alova2MethodConfig<Utils_response_array_system_api> & {
+          params: {
+            /**
+             * 角色ID
+             * [required]
+             */
+            roleId: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<Utils_response_array_system_api, 'api.get_apis_role', Config>;
+      /**
+       * ---
+       *
+       * [POST] 更新角色API关联
+       *
+       * **path:** /apis/role
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   ids?: number[]
+       *   roleId?: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // [required]
+       *   code: string
+       *   // [required]
+       *   data: string
+       *   // [required]
+       *   msg: string
+       * }
+       * ```
+       */
+      post_apis_role<
+        Config extends Alova2MethodConfig<Utils_response_string> & {
+          data: {
+            ids?: number[];
+            roleId?: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<Utils_response_string, 'api.post_apis_role', Config>;
+      /**
+       * ---
+       *
+       * [POST] 更新API接口
+       *
+       * **path:** /apis/update
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   createTime?: string
+       *   group?: string
+       *   id?: number
+       *   method?: string
+       *   name?: string
+       *   path?: string
+       *   roles?: Array<System_role>
+       *   updateTime?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // [required]
+       *   code: string
+       *   // [required]
+       *   data: {
+       *     createTime?: string
+       *     group?: string
+       *     id?: number
+       *     method?: string
+       *     name?: string
+       *     path?: string
+       *     roles?: Array<System_role>
+       *     updateTime?: string
+       *   }
+       *   // [required]
+       *   msg: string
+       * }
+       * ```
+       */
+      post_apis_update<
+        Config extends Alova2MethodConfig<Utils_response_system_api> & {
+          data: System_api;
+        }
+      >(
+        config: Config
+      ): Alova2Method<Utils_response_system_api, 'api.post_apis_update', Config>;
     };
   }
 
