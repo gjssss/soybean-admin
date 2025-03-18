@@ -349,6 +349,7 @@ const local = {
         },
         addRole: '新增角色',
         editRole: '编辑角色',
+        apiAuth: 'API权限',
       },
       user: {
         title: '用户列表',
@@ -359,7 +360,7 @@ const local = {
         userPhone: '手机号',
         userEmail: '邮箱',
         userStatus: '用户状态',
-        userRole: '用户角���',
+        userRole: '用户角色',
         form: {
           userName: '请输入用户名',
           password: '请输入密码',

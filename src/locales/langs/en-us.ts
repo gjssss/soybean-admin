@@ -349,6 +349,7 @@ const local = {
         },
         addRole: 'Add Role',
         editRole: 'Edit Role',
+        apiAuth: 'API Auth',
       },
       user: {
         title: 'User List',

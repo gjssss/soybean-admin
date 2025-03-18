@@ -70,10 +70,9 @@ const methodOptions = [
   { label: 'HEAD', value: 'HEAD' },
 ]
 
-type RuleKey = 'name' | 'path' | 'method' | 'group'
+type RuleKey = 'path' | 'method' | 'group'
 
 const rules: Record<RuleKey, App.Global.FormRule> = {
-  name: defaultRequiredRule,
   path: defaultRequiredRule,
   method: defaultRequiredRule,
   group: defaultRequiredRule,
@@ -84,7 +83,7 @@ function handleInitModel() {
 
   if (props.operateType === 'edit' && props.rowData) {
     const { path, method, group } = props.rowData
-    Object.assign(model.value, { name, path, method, group })
+    Object.assign(model.value, { path, method, group })
   }
 }
 

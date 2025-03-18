@@ -4,6 +4,7 @@ import { useFormRules, useNaiveForm } from '@/hooks/common/form'
 import { $t } from '@/locales'
 import { useBoolean } from '@sa/hooks'
 import { computed, ref, watch } from 'vue'
+import ApiAuthModal from './api-auth-modal.vue'
 import ButtonAuthModal from './button-auth-modal.vue'
 import MenuAuthModal from './menu-auth-modal.vue'
 
@@ -34,6 +35,7 @@ const { formRef, validate, restoreValidation } = useNaiveForm()
 const { defaultRequiredRule } = useFormRules()
 const { bool: menuAuthVisible, setTrue: openMenuAuthModal } = useBoolean()
 const { bool: buttonAuthVisible, setTrue: openButtonAuthModal } = useBoolean()
+const { bool: apiAuthVisible, setTrue: openApiAuthModal } = useBoolean()
 
 const title = computed(() => {
   const titles: Record<NaiveUI.TableOperateType, string> = {
@@ -130,6 +132,10 @@ watch(visible, () => {
           {{ $t('page.manage.role.buttonAuth') }}
         </NButton>
         <ButtonAuthModal v-model:visible="buttonAuthVisible" :role-id="roleId" />
+        <NButton @click="openApiAuthModal">
+          {{ $t('page.manage.role.apiAuth') }}
+        </NButton>
+        <ApiAuthModal v-model:visible="apiAuthVisible" :role-id="roleId" />
       </NSpace>
       <template #footer>
         <NSpace :size="16">

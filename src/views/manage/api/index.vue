@@ -25,14 +25,17 @@ const { columns, columnChecks, data, loading, getData, getDataByPage } = useTabl
     data.forEach((item) => {
       const groupObject = records.find(i => i.group === item.group)
       if (groupObject) {
-        groupObject.children!.push(item)
+        groupObject.children!.push({
+          ...item,
+          group: '',
+        })
       }
       else {
         records.push({
           id: item.group as any,
           group: item.group,
           children: [
-            item,
+            { ...item, group: '' },
           ],
         })
       }
