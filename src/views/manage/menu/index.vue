@@ -20,7 +20,7 @@ const { bool: visible, setTrue: openModal } = useBoolean()
 
 const wrapperRef = ref<HTMLElement | null>(null)
 
-const { columns, columnChecks, data, loading, pagination, getData, getDataByPage } = useTable({
+const { columns, columnChecks, data, loading, getData, getDataByPage } = useTable({
   apiFn: async () => {
     // 由于没有不分页的封装，所以只能这样写
     return {
@@ -246,7 +246,7 @@ function handleAddChildMenu(item: System_menu) {
         :loading="loading"
         :row-key="row => row.id"
         remote
-        :pagination="pagination"
+        :pagination="false"
         class="sm:h-full"
       />
       <MenuOperateModal

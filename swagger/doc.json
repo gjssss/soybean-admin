@@ -2022,6 +2022,69 @@
         ]
       }
     },
+    "/apis/delete/batch": {
+      "post": {
+        "summary": "批量删除API接口",
+        "deprecated": false,
+        "description": "批量删除指定API接口",
+        "tags": [
+          "API管理"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "1": {
+                  "value": "",
+                  "description": ""
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/utils.Response-string"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/utils.Response-string"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/apis/role": {
       "get": {
         "summary": "获取角色API接口",
@@ -2750,9 +2813,6 @@
             "type": "integer"
           },
           "method": {
-            "type": "string"
-          },
-          "name": {
             "type": "string"
           },
           "path": {

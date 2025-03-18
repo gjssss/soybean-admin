@@ -53,6 +53,7 @@ export default {
   'api.get_apis': ['GET', '/apis'],
   'api.post_apis': ['POST', '/apis'],
   'api.post_apis_delete': ['POST', '/apis/delete'],
+  'api.post_apis_delete_batch': ['POST', '/apis/delete/batch'],
   'api.get_apis_role': ['GET', '/apis/role'],
   'api.post_apis_role': ['POST', '/apis/role'],
   'api.post_apis_update': ['POST', '/apis/update']

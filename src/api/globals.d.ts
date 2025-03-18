@@ -265,7 +265,6 @@ export type System_api = {
   group?: string;
   id?: number;
   method?: string;
-  name?: string;
   path?: string;
   roles?: System_role[];
   updateTime?: string;
@@ -1518,7 +1517,6 @@ declare global {
        *         group?: string
        *         id?: number
        *         method?: string
-       *         name?: string
        *         path?: string
        *         roles?: Array<System_role>
        *         updateTime?: string
@@ -1627,7 +1625,6 @@ declare global {
        *     group?: string
        *     id?: number
        *     method?: string
-       *     name?: string
        *     path?: string
        *     roles?: Array<System_role>
        *     updateTime?: string
@@ -1709,7 +1706,6 @@ declare global {
        *       group?: string
        *       id?: number
        *       method?: string
-       *       name?: string
        *       path?: string
        *       roles?: Array<System_role>
        *       updateTime?: string
@@ -1808,7 +1804,6 @@ declare global {
        *       group?: string
        *       id?: number
        *       method?: string
-       *       name?: string
        *       path?: string
        *       roles?: Array<System_role>
        *       updateTime?: string
@@ -2059,7 +2054,6 @@ declare global {
        *     group?: string
        *     id?: number
        *     method?: string
-       *     name?: string
        *     path?: string
        *     roles?: Array<System_role>
        *     updateTime?: string
@@ -2189,7 +2183,6 @@ declare global {
        *           group?: string
        *           id?: number
        *           method?: string
-       *           name?: string
        *           path?: string
        *           roles?: Array<System_role>
        *           updateTime?: string
@@ -2305,7 +2298,6 @@ declare global {
        *       group?: string
        *       id?: number
        *       method?: string
-       *       name?: string
        *       path?: string
        *       roles?: Array<System_role>
        *       updateTime?: string
@@ -2394,7 +2386,6 @@ declare global {
        *         group?: string
        *         id?: number
        *         method?: string
-       *         name?: string
        *         path?: string
        *         roles?: Array<System_role>
        *         updateTime?: string
@@ -2578,7 +2569,6 @@ declare global {
        *       group?: string
        *       id?: number
        *       method?: string
-       *       name?: string
        *       path?: string
        *       roles?: Array<System_role>
        *       updateTime?: string
@@ -2743,7 +2733,6 @@ declare global {
        *       group?: string
        *       id?: number
        *       method?: string
-       *       name?: string
        *       path?: string
        *       roles?: Array<System_role>
        *       updateTime?: string
@@ -2890,7 +2879,6 @@ declare global {
        *     group?: string
        *     id?: number
        *     method?: string
-       *     name?: string
        *     path?: string
        *     roles?: Array<System_role>
        *     updateTime?: string
@@ -2919,7 +2907,6 @@ declare global {
        *   group?: string
        *   id?: number
        *   method?: string
-       *   name?: string
        *   path?: string
        *   roles?: Array<System_role>
        *   updateTime?: string
@@ -2939,7 +2926,6 @@ declare global {
        *     group?: string
        *     id?: number
        *     method?: string
-       *     name?: string
        *     path?: string
        *     roles?: Array<System_role>
        *     updateTime?: string
@@ -2998,6 +2984,45 @@ declare global {
       /**
        * ---
        *
+       * [POST] 批量删除API接口
+       *
+       * **path:** /apis/delete/batch
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   ids?: number[]
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // [required]
+       *   code: string
+       *   // [required]
+       *   data: string
+       *   // [required]
+       *   msg: string
+       * }
+       * ```
+       */
+      post_apis_delete_batch<
+        Config extends Alova2MethodConfig<Utils_response_string> & {
+          data: {
+            ids?: number[];
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<Utils_response_string, 'api.post_apis_delete_batch', Config>;
+      /**
+       * ---
+       *
        * [GET] 获取角色API接口
        *
        * **path:** /apis/role
@@ -3026,7 +3051,6 @@ declare global {
        *     group?: string
        *     id?: number
        *     method?: string
-       *     name?: string
        *     path?: string
        *     roles?: Array<System_role>
        *     updateTime?: string
@@ -3106,7 +3130,6 @@ declare global {
        *   group?: string
        *   id?: number
        *   method?: string
-       *   name?: string
        *   path?: string
        *   roles?: Array<System_role>
        *   updateTime?: string
@@ -3126,7 +3149,6 @@ declare global {
        *     group?: string
        *     id?: number
        *     method?: string
-       *     name?: string
        *     path?: string
        *     roles?: Array<System_role>
        *     updateTime?: string
