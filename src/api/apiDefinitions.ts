@@ -56,5 +56,7 @@ export default {
   'api.post_apis_delete_batch': ['POST', '/apis/delete/batch'],
   'api.get_apis_role': ['GET', '/apis/role'],
   'api.post_apis_role': ['POST', '/apis/role'],
-  'api.post_apis_update': ['POST', '/apis/update']
+  'api.post_apis_update': ['POST', '/apis/update'],
+  'general.get_upload_aws': ['GET', '/upload/aws'],
+  'general.get_upload_qiniu': ['GET', '/upload/qiniu']
 };

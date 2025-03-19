@@ -438,6 +438,66 @@ export type Utils_response_system_api = {
    */
   msg: string;
 };
+export type System_uploadawsdto = {
+  /**
+   * [required]
+   */
+  contentType: string;
+  /**
+   * [required]
+   */
+  objectKey: string;
+  /**
+   * [required]
+   */
+  url: string;
+};
+export type Utils_response_system_uploadawsdto = {
+  /**
+   * [required]
+   */
+  code: string;
+  /**
+   * [required]
+   */
+  data: System_uploadawsdto;
+  /**
+   * [required]
+   */
+  msg: string;
+};
+export type System_uploadqiniudto = {
+  /**
+   * [required]
+   */
+  key: string;
+  /**
+   * [required]
+   */
+  token: string;
+  /**
+   * [required]
+   */
+  uploadUrl: string;
+  /**
+   * [required]
+   */
+  url: string;
+};
+export type Utils_response_system_uploadqiniudto = {
+  /**
+   * [required]
+   */
+  code: string;
+  /**
+   * [required]
+   */
+  data: System_uploadqiniudto;
+  /**
+   * [required]
+   */
+  msg: string;
+};
 declare global {
   interface Apis {
     general: {
@@ -2857,6 +2917,120 @@ declare global {
       >(
         config: Config
       ): Alova2Method<Utils_response_string, 'general.post_users_roles', Config>;
+      /**
+       * ---
+       *
+       * [GET] 获取S3上传凭证
+       *
+       * **path:** /upload/aws
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 对象键名
+       *   // [required]
+       *   object_key: string
+       *   // 文件内容类型
+       *   // [required]
+       *   content_type: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // [required]
+       *   code: string
+       *   // [required]
+       *   data: {
+       *     // [required]
+       *     contentType: string
+       *     // [required]
+       *     objectKey: string
+       *     // [required]
+       *     url: string
+       *   }
+       *   // [required]
+       *   msg: string
+       * }
+       * ```
+       */
+      get_upload_aws<
+        Config extends Alova2MethodConfig<Utils_response_system_uploadawsdto> & {
+          params: {
+            /**
+             * 对象键名
+             * [required]
+             */
+            object_key: string;
+            /**
+             * 文件内容类型
+             * [required]
+             */
+            content_type: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<Utils_response_system_uploadawsdto, 'general.get_upload_aws', Config>;
+      /**
+       * ---
+       *
+       * [GET] 获取七牛云上传凭证
+       *
+       * **path:** /upload/qiniu
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 文件内容类型
+       *   // [required]
+       *   content_type: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // [required]
+       *   code: string
+       *   // [required]
+       *   data: {
+       *     // [required]
+       *     key: string
+       *     // [required]
+       *     token: string
+       *     // [required]
+       *     uploadUrl: string
+       *     // [required]
+       *     url: string
+       *   }
+       *   // [required]
+       *   msg: string
+       * }
+       * ```
+       */
+      get_upload_qiniu<
+        Config extends Alova2MethodConfig<Utils_response_system_uploadqiniudto> & {
+          params: {
+            /**
+             * 文件内容类型
+             * [required]
+             */
+            content_type: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<Utils_response_system_uploadqiniudto, 'general.get_upload_qiniu', Config>;
     };
     api: {
       /**

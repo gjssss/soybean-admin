@@ -23,6 +23,9 @@
     },
     {
       "name": "API管理"
+    },
+    {
+      "name": "上传"
     }
   ],
   "paths": {
@@ -2253,6 +2256,93 @@
           }
         ]
       }
+    },
+    "/upload/aws": {
+      "get": {
+        "summary": "获取S3上传凭证",
+        "deprecated": false,
+        "description": "获取S3预签名URL用于直接上传文件",
+        "tags": [
+          "上传"
+        ],
+        "parameters": [
+          {
+            "name": "object_key",
+            "in": "query",
+            "description": "对象键名",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "content_type",
+            "in": "query",
+            "description": "文件内容类型",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回预签名URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/utils.Response-system_UploadAWSDTO"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/upload/qiniu": {
+      "get": {
+        "summary": "获取七牛云上传凭证",
+        "deprecated": false,
+        "description": "获取七牛云单次使用的上传凭证",
+        "tags": [
+          "上传"
+        ],
+        "parameters": [
+          {
+            "name": "content_type",
+            "in": "query",
+            "description": "文件内容类型",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回七牛云上传凭证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/utils.Response-system_UploadQiniuDTO"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -2864,6 +2954,86 @@
           },
           "data": {
             "$ref": "#/components/schemas/system.Api"
+          },
+          "msg": {
+            "type": "string"
+          }
+        }
+      },
+      "system.UploadAWSDTO": {
+        "type": "object",
+        "required": [
+          "contentType",
+          "objectKey",
+          "url"
+        ],
+        "properties": {
+          "contentType": {
+            "type": "string"
+          },
+          "objectKey": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "system.UploadQiniuDTO": {
+        "type": "object",
+        "required": [
+          "key",
+          "token",
+          "uploadUrl",
+          "url"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "uploadUrl": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "utils.Response-system_UploadAWSDTO": {
+        "type": "object",
+        "required": [
+          "code",
+          "data",
+          "msg"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/system.UploadAWSDTO"
+          },
+          "msg": {
+            "type": "string"
+          }
+        }
+      },
+      "utils.Response-system_UploadQiniuDTO": {
+        "type": "object",
+        "required": [
+          "code",
+          "data",
+          "msg"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/system.UploadQiniuDTO"
           },
           "msg": {
             "type": "string"
